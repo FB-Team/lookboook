@@ -1,0 +1,14 @@
+.Account{
+  width: fit-content;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+.Account:hover {
+  cursor: pointer;
+}
+.image img{
+  height: 60px;
+  border-radius: 50%;
+}

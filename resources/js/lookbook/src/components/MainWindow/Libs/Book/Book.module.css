@@ -1,0 +1,43 @@
+.Book {
+  width: 200px;
+  margin: 0 auto;
+}
+.Books{
+  position: relative;
+  text-align: left;
+  display:flex;
+  flex-direction: row;
+  height: 100px;
+  width: 100px;
+}
+.link {
+  text-align: left;
+}
+.Books img {
+  align-self: center;
+  height: 100px;
+}
+.Book a {
+    text-decoration: none;
+    color: black;
+}
+.Books div {
+  text-align: center;
+}
+.name {
+  position: relative;
+  left: 0px;
+  top: 0px;
+}
+.trash {
+  float: right;
+}
+
+.trash img {
+  height: 20px;
+
+}
+.size {
+  position: relative;
+
+}

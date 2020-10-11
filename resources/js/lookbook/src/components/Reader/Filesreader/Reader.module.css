@@ -1,0 +1,21 @@
+.Reader {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow:hidden;
+overflow-y:hidden;  /*для вертикального*/
+overflow-x:hidden;
+}
+p{
+  margin-left: auto;
+  margin-right: auto;
+  text-align: justify;
+  display: block;
+  margin: 0px;
+  width: 95%;
+}
+img {
+  max-height: 200px;
+  max-height: 200px;
+}

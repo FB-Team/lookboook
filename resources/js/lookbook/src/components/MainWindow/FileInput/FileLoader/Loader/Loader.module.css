@@ -1,0 +1,40 @@
+:root {
+  --filesystemInputHeight: 20px;
+  --height:                90px;
+  --selectedButtonWidth:   180px;
+}
+.Loader {
+  position: relative;
+    width: var(--fileLoaderWidth);
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.input{
+  display: none;
+}
+.selectedFiles {
+  width:100px;
+}
+.urlLoader {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  height:28px;
+}
+.Loader button {
+  margin-right: 2px;
+}
+.filesystemSave {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.filesystemSave input {
+  {/*height: var(--filesystemInputHeight);*/}
+}
+.Loader div {
+
+}

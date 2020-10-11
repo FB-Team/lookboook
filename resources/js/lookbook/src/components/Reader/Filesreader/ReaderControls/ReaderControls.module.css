@@ -1,0 +1,15 @@
+.ReaderControls {
+  height: var(--controls-height);
+  position: fixed;
+  display: flex;
+  left: 0px;
+  top: 0px;
+  background-color: silver;
+  width: 100vw;
+}
+.controlsWrapper {
+  display: flex;
+  align-self: flex-end;
+  margin-left: auto;
+  margin-right: 50px;
+}

@@ -1,0 +1,17 @@
+	users ...
+
+	root_libs
+id user_id name 	 books 	libs 
+0       0  root           {...}	[id1,id2...]
+
+	libs
+id libs_id name 	books 	libs 
+0   0       "..."    	{...}	[id1, id2...]
+
+	settings
+id user_id styles custom_settings
+0    0      {...}	{...}
+
+	env
+id libs_path
+0   "..."

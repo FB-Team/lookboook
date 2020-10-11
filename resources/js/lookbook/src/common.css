@@ -1,0 +1,7 @@
+:root {
+  --fileLoaderWidth: 1200px;
+  --controls-height: 38px;
+}
+.btn-secondary {
+  height: 100%;
+}
