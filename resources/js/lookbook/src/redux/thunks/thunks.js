@@ -67,7 +67,8 @@ export const getStyles = (login) => async (dispatch) => {
     dispatch (setStyles(styles))
     return styles
   } catch (e){
-    alert ("Network error occured  = " + e);
+    console.log("Network error occured  = " + e)
+    // alert ("Network error occured  = " + e);
     return null
   }
 }
@@ -96,7 +97,6 @@ export const signIn = (login, password) => async (dispatch) => {
     let response = await accountsAPI.signIn (login, password)
     dispatch (dispatch(setCredentials(response.login, response.password)))
   }catch (e) {
-    debugger
     alert ('Cannot perform a sign in!');
     return null
   }
@@ -106,7 +106,6 @@ export const signUp = (login, password) => async (dispatch) => {
     let response = await accountsAPI.signUp (login, password)
     dispatch (dispatch(setCredentials(response.login, response.password)))
   }catch (e) {
-    debugger
     alert ('Cannot perform a sign up')
   }
 }

@@ -8,8 +8,8 @@ require('./bootstrap');
 require('./lookbook/src/App')
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './lookbook/src/index.css';
-import './lookbook/src/common.css';
+// import './lookbook/src/index.css';
+// import './lookbook/src/common.css';
 import App from './lookbook/src/App';
 //import * as serviceWorker from './serviceWorker';
 

@@ -1,29 +1,27 @@
-import {Provider, useDispatch, useSelector} from 'react-redux';
-import {Route, HashRouter as Router} from 'react-router-dom';
+import {Provider} from 'react-redux';
+import {Route, BrowserRouter as Router} from 'react-router-dom';
 import React from 'react';
 
-import {getStyles} from './redux/thunks/thunks';
 import FileInput from './components/MainWindow/FileInput/FileInput';
 import Reader from './components/Reader/Filesreader/Reader';
 import s from './App.module.css';
 import store from './redux/indexRedux'
-import {CookiesProvider} from 'react-cookie'
 
 const App = (props) => {
-
     return ( 
-    <div className = {s.App} >
-        <Provider store = {store}> 
-        <CookiesProvider> 
-            <Router> 
-                    <Route exact path = '/'>
-                <Reader> 
-                        TEst
-                        <FileInput/> 
-                </Reader> 
+    <div className={s.App}>
+        <Provider store = {store}>
+            <Router>
+                <Route path="/">
+                <FileInput/>
                     </Route>
-            </Router> 
-        </CookiesProvider> 
+            
+                <Route exact path = '/reader'>
+                <Reader>
+                       
+                </Reader> 
+                </Route>
+            </Router>
         </Provider>
     </div>
     )
