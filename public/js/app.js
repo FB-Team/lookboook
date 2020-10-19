@@ -7236,7 +7236,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".App {\r\n  text-align: center;\r\n}\r\n.testDiplay{\r\n  height: 100vh;\r\n}\r\n.App-logo {\r\n  height: 40vmin;\r\n  pointer-events: none;\r\n}\r\n\r\n@media (prefers-reduced-motion: no-preference) {\r\n  .App-logo {\r\n    animation: App-logo-spin infinite 20s linear;\r\n  }\r\n}\r\n\r\n.App-header {\r\n  background-color: #282c34;\r\n  min-height: 100vh;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: center;\r\n  font-size: calc(10px + 2vmin);\r\n  color: white;\r\n}\r\n\r\n.App-link {\r\n  color: #61dafb;\r\n}\r\n\r\n@keyframes App-logo-spin {\r\n  from {\r\n    transform: rotate(0deg);\r\n  }\r\n  to {\r\n    transform: rotate(360deg);\r\n  }\r\n}\r\n", ""]);
+exports.push([module.i, ".App {\n  text-align: center;\n}\n.testDiplay{\n  height: 100vh;\n}\n.App-logo {\n  height: 40vmin;\n  pointer-events: none;\n}\n\n@media (prefers-reduced-motion: no-preference) {\n  .App-logo {\n    animation: App-logo-spin infinite 20s linear;\n  }\n}\n\n.App-header {\n  background-color: #282c34;\n  min-height: 100vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  font-size: calc(10px + 2vmin);\n  color: white;\n}\n\n.App-link {\n  color: #61dafb;\n}\n\n@keyframes App-logo-spin {\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}\n", ""]);
 
 // exports
 
@@ -75018,7 +75018,7 @@ var filesAxios = axios__WEBPACK_IMPORTED_MODULE_1__["create"]({
   baseURL: 'http://lookbook/api/accountsAPI'
 });
 var accountsAPI = {
-  signIn: function signIn(login, password) {
+  signIn: function signIn(password) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
@@ -75026,7 +75026,7 @@ var accountsAPI = {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return filesAxios.put(login, {
+              return filesAxios.put({
                 password: password
               });
 
@@ -75051,7 +75051,7 @@ var accountsAPI = {
       }, _callee);
     }))();
   },
-  signUp: function signUp(login, password) {
+  signUp: function signUp(password) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
@@ -75059,7 +75059,7 @@ var accountsAPI = {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.next = 2;
-              return filesAxios.post(login, {
+              return filesAxios.post({
                 password: password
               });
 
@@ -75114,7 +75114,7 @@ var filesAxios = axios__WEBPACK_IMPORTED_MODULE_1__["create"]({
   port: 8000
 });
 var filesAPI = {
-  getLibs: function getLibs(login) {
+  getLibs: function getLibs() {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
@@ -75122,7 +75122,7 @@ var filesAPI = {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return filesAxios.get(login);
+              return filesAxios.get();
 
             case 2:
               response = _context.sent;
@@ -75145,34 +75145,40 @@ var filesAPI = {
       }, _callee);
     }))();
   },
-  putBooks: function putBooks(login, books) {
+  putBooks: function putBooks(books, rootLib) {
+    var _arguments = arguments;
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      var response;
+      var id, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _context2.next = 2;
-              return filesAxios.post(login, books, {
+              id = _arguments.length > 2 && _arguments[2] !== undefined ? _arguments[2] : null;
+              _context2.next = 3;
+              return filesAxios.post('', {
+                books: books,
+                isRoot: rootLib,
+                id: libId
+              }, {
                 headers: {
                   'Content-Type': 'multipart/form-data'
                 }
               });
 
-            case 2:
+            case 3:
               response = _context2.sent;
 
               if (!response) {
-                _context2.next = 7;
+                _context2.next = 8;
                 break;
               }
 
               return _context2.abrupt("return", response.data);
 
-            case 7:
+            case 8:
               throw new Error('FilesAPI: Cannot get response from a server!');
 
-            case 8:
+            case 9:
             case "end":
               return _context2.stop();
           }
@@ -75180,7 +75186,7 @@ var filesAPI = {
       }, _callee2);
     }))();
   },
-  putBookByUrl: function putBookByUrl(login, book) {
+  putBookByUrl: function putBookByUrl(book) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
@@ -75188,7 +75194,7 @@ var filesAPI = {
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.next = 2;
-              return filesAxios.post(login, {
+              return filesAxios.post({
                 book: book
               });
 
@@ -75203,7 +75209,7 @@ var filesAPI = {
               return _context3.abrupt("return", response.data);
 
             case 7:
-              throw new Error('filesAPI, putBookByUrl: no response received from the server!');
+              throw new Error('filesAPIputBookByUrl: no response received from the server!');
 
             case 8:
             case "end":
@@ -75213,7 +75219,7 @@ var filesAPI = {
       }, _callee3);
     }))();
   },
-  createLib: function createLib(login, libName, books) {
+  createLib: function createLib(libNamebooks) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
@@ -75222,9 +75228,7 @@ var filesAPI = {
             case 0:
               _context4.next = 2;
               return filesAxios.put({
-                login: login,
-                libName: libName,
-                books: books
+                libNamebooks: libNamebooks
               });
 
             case 2:
@@ -75248,7 +75252,7 @@ var filesAPI = {
       }, _callee4);
     }))();
   },
-  putLib: function putLib(login, libs, books) {
+  putLib: function putLib(libsbooks) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
@@ -75257,9 +75261,7 @@ var filesAPI = {
             case 0:
               _context5.next = 2;
               return filesAxios.put({
-                login: login,
-                libs: libs,
-                books: books
+                libsbooks: libsbooks
               });
 
             case 2:
@@ -75283,7 +75285,7 @@ var filesAPI = {
       }, _callee5);
     }))();
   },
-  getBook: function getBook(login, name) {
+  getBook: function getBook(name) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
@@ -75291,7 +75293,7 @@ var filesAPI = {
           switch (_context6.prev = _context6.next) {
             case 0:
               _context6.next = 2;
-              return filesAxios.get("".concat(login, "/item"), {
+              return filesAxios.get("item", {
                 params: {
                   name: name
                 }
@@ -75318,7 +75320,7 @@ var filesAPI = {
       }, _callee6);
     }))();
   },
-  deleteBook: function deleteBook(login, bookName) {
+  deleteBook: function deleteBook(bookName) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
@@ -75326,7 +75328,7 @@ var filesAPI = {
           switch (_context7.prev = _context7.next) {
             case 0:
               _context7.next = 2;
-              return filesAxios["delete"]("".concat(login, "/").concat(bookName));
+              return filesAxios["delete"]("bookName");
 
             case 2:
               response = _context7.sent;
@@ -75693,7 +75695,7 @@ var FileInput = function FileInput(props) {
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
     className: _FileInput_module_css__WEBPACK_IMPORTED_MODULE_7___default.a.FileInput
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_Account_Account__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_FileLoader_FileLoader__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_CredentialsDialog_CredentialsDialog__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_Libs_Libs__WEBPACK_IMPORTED_MODULE_6__["default"], null));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_FileLoader_FileLoader__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_CredentialsDialog_CredentialsDialog__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_Libs_Libs__WEBPACK_IMPORTED_MODULE_6__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (FileInput);
@@ -75775,10 +75777,10 @@ var FileLoader = function FileLoader(props) {
     files.map(function (file) {
       data.append(file.name, file, file.name);
     });
-    dispatch(Object(_redux_thunks_thunks__WEBPACK_IMPORTED_MODULE_2__["putBooks"])(login, data));
+    dispatch(Object(_redux_thunks_thunks__WEBPACK_IMPORTED_MODULE_2__["putBooks"])(data, true));
 
     if (fileUrl) {
-      dispatch(Object(_redux_thunks_thunks__WEBPACK_IMPORTED_MODULE_2__["putBookByUrl"])(login, fileUrl));
+      dispatch(Object(_redux_thunks_thunks__WEBPACK_IMPORTED_MODULE_2__["putBookByUrl"])(fileUrl));
     }
   }
 
@@ -77357,7 +77359,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-var getAllLibs = function getAllLibs(login) {
+var getAllLibs = function getAllLibs() {
   return /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(dispatch) {
       var response;
@@ -77367,7 +77369,7 @@ var getAllLibs = function getAllLibs(login) {
             case 0:
               _context.prev = 0;
               _context.next = 3;
-              return _api_filesAPI_filesAPI__WEBPACK_IMPORTED_MODULE_4__["filesAPI"].getLibs(login);
+              return _api_filesAPI_filesAPI__WEBPACK_IMPORTED_MODULE_4__["filesAPI"].getLibs();
 
             case 3:
               response = _context.sent;
@@ -77393,7 +77395,7 @@ var getAllLibs = function getAllLibs(login) {
     };
   }();
 };
-var putBooks = function putBooks(login, books) {
+var putBooks = function putBooks(books) {
   return /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(dispatch) {
       var response;
@@ -77403,27 +77405,30 @@ var putBooks = function putBooks(login, books) {
             case 0:
               _context2.prev = 0;
               _context2.next = 3;
-              return _api_filesAPI_filesAPI__WEBPACK_IMPORTED_MODULE_4__["filesAPI"].putBooks(login, books);
+              return _api_filesAPI_filesAPI__WEBPACK_IMPORTED_MODULE_4__["filesAPI"].putBooks({
+                books: books
+              });
 
             case 3:
               response = _context2.sent;
+              debugger;
               dispatch(Object(_actions_files_filesActions__WEBPACK_IMPORTED_MODULE_2__["setCurrentBook"])(response.content));
               dispatch(Object(_actions_files_filesActions__WEBPACK_IMPORTED_MODULE_2__["setLibs"])(response.libsTree));
               dispatch(Object(_actions_files_selectedActions__WEBPACK_IMPORTED_MODULE_3__["clearSelectedAll"])());
-              _context2.next = 12;
+              _context2.next = 13;
               break;
 
-            case 9:
-              _context2.prev = 9;
+            case 10:
+              _context2.prev = 10;
               _context2.t0 = _context2["catch"](0);
               alert('Cannot put books to the server! Message = ' + _context2.t0);
 
-            case 12:
+            case 13:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[0, 9]]);
+      }, _callee2, null, [[0, 10]]);
     }));
 
     return function (_x2) {
@@ -77431,7 +77436,7 @@ var putBooks = function putBooks(login, books) {
     };
   }();
 };
-var putBookByUrl = function putBookByUrl(login, book) {
+var putBookByUrl = function putBookByUrl(book) {
   return /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(dispatch) {
       var response;
@@ -77441,7 +77446,9 @@ var putBookByUrl = function putBookByUrl(login, book) {
             case 0:
               _context3.prev = 0;
               _context3.next = 3;
-              return _api_filesAPI_filesAPI__WEBPACK_IMPORTED_MODULE_4__["filesAPI"].putBookByUrl(login, book);
+              return _api_filesAPI_filesAPI__WEBPACK_IMPORTED_MODULE_4__["filesAPI"].putBookByUrl({
+                book: book
+              });
 
             case 3:
               response = _context3.sent;
@@ -77507,7 +77514,7 @@ var putLibs = function putLibs(libs, books) {
     };
   }();
 };
-var getBook = function getBook(login, bookName) {
+var getBook = function getBook(bookName) {
   return /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(dispatch) {
       var response;
@@ -77518,7 +77525,7 @@ var getBook = function getBook(login, bookName) {
               _context5.prev = 0;
               dispatch(Object(_actions_files_filesActions__WEBPACK_IMPORTED_MODULE_2__["clearCurrentBook"])());
               _context5.next = 4;
-              return _api_filesAPI_filesAPI__WEBPACK_IMPORTED_MODULE_4__["filesAPI"].getBook(login, bookName);
+              return _api_filesAPI_filesAPI__WEBPACK_IMPORTED_MODULE_4__["filesAPI"].getBook(bookName);
 
             case 4:
               response = _context5.sent;
@@ -77543,7 +77550,7 @@ var getBook = function getBook(login, bookName) {
     };
   }();
 };
-var getStyles = function getStyles(login) {
+var getStyles = function getStyles() {
   return /*#__PURE__*/function () {
     var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(dispatch) {
       var response, styles;
@@ -77553,7 +77560,7 @@ var getStyles = function getStyles(login) {
             case 0:
               _context6.prev = 0;
               _context6.next = 3;
-              return _api_stylesAPI_stylesAPI__WEBPACK_IMPORTED_MODULE_7__["stylesAPI"].getStyles(login);
+              return _api_stylesAPI_stylesAPI__WEBPACK_IMPORTED_MODULE_7__["stylesAPI"].getStyles();
 
             case 3:
               response = _context6.sent;
@@ -77586,7 +77593,7 @@ var getStyles = function getStyles(login) {
     };
   }();
 };
-var updateStyles = function updateStyles(login, styles) {
+var updateStyles = function updateStyles(styles) {
   return /*#__PURE__*/function () {
     var _ref7 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(dispatch) {
       var response;
@@ -77605,7 +77612,7 @@ var updateStyles = function updateStyles(login, styles) {
 
             case 3:
               _context7.next = 5;
-              return _api_stylesAPI_stylesAPI__WEBPACK_IMPORTED_MODULE_7__["stylesAPI"].updateStyles(login, styles);
+              return _api_stylesAPI_stylesAPI__WEBPACK_IMPORTED_MODULE_7__["stylesAPI"].updateStyles(styles);
 
             case 5:
               response = _context7.sent;
@@ -77631,7 +77638,7 @@ var updateStyles = function updateStyles(login, styles) {
     };
   }();
 };
-var deleteBook = function deleteBook(login, id) {
+var deleteBook = function deleteBook(id) {
   return /*#__PURE__*/function () {
     var _ref8 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(dispatch) {
       var response;
@@ -77641,7 +77648,7 @@ var deleteBook = function deleteBook(login, id) {
             case 0:
               _context8.prev = 0;
               _context8.next = 3;
-              return _api_filesAPI_filesAPI__WEBPACK_IMPORTED_MODULE_4__["filesAPI"].deleteBook(login, Number(id));
+              return _api_filesAPI_filesAPI__WEBPACK_IMPORTED_MODULE_4__["filesAPI"].deleteBook(Number(id));
 
             case 3:
               response = _context8.sent;
@@ -77668,7 +77675,7 @@ var deleteBook = function deleteBook(login, id) {
     };
   }();
 };
-var signIn = function signIn(login, password) {
+var signIn = function signIn(password) {
   return /*#__PURE__*/function () {
     var _ref9 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9(dispatch) {
       var response;
@@ -77678,11 +77685,11 @@ var signIn = function signIn(login, password) {
             case 0:
               _context9.prev = 0;
               _context9.next = 3;
-              return _api_accountsAPI_accountsAPI__WEBPACK_IMPORTED_MODULE_1__["accountsAPI"].signIn(login, password);
+              return _api_accountsAPI_accountsAPI__WEBPACK_IMPORTED_MODULE_1__["accountsAPI"].signIn(password);
 
             case 3:
               response = _context9.sent;
-              dispatch(dispatch(Object(_actions_accounts_accountActions__WEBPACK_IMPORTED_MODULE_5__["setCredentials"])(response.login, response.password)));
+              dispatch(dispatch(Object(_actions_accounts_accountActions__WEBPACK_IMPORTED_MODULE_5__["setCredentials"])(response.response.password)));
               _context9.next = 11;
               break;
 
@@ -77705,7 +77712,7 @@ var signIn = function signIn(login, password) {
     };
   }();
 };
-var signUp = function signUp(login, password) {
+var signUp = function signUp(password) {
   return /*#__PURE__*/function () {
     var _ref10 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10(dispatch) {
       var response;
@@ -77715,11 +77722,11 @@ var signUp = function signUp(login, password) {
             case 0:
               _context10.prev = 0;
               _context10.next = 3;
-              return _api_accountsAPI_accountsAPI__WEBPACK_IMPORTED_MODULE_1__["accountsAPI"].signUp(login, password);
+              return _api_accountsAPI_accountsAPI__WEBPACK_IMPORTED_MODULE_1__["accountsAPI"].signUp(password);
 
             case 3:
               response = _context10.sent;
-              dispatch(dispatch(Object(_actions_accounts_accountActions__WEBPACK_IMPORTED_MODULE_5__["setCredentials"])(response.login, response.password)));
+              dispatch(dispatch(Object(_actions_accounts_accountActions__WEBPACK_IMPORTED_MODULE_5__["setCredentials"])(response.response.password)));
               _context10.next = 10;
               break;
 
@@ -77762,8 +77769,8 @@ var signUp = function signUp(login, password) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\pylke\Downloads\OSPanel\domains\LookBook\lookboook\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\pylke\Downloads\OSPanel\domains\LookBook\lookboook\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\OpenServer\OSPanel\domains\lookbook\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\OpenServer\OSPanel\domains\lookbook\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

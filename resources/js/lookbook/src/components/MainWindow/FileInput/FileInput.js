@@ -12,7 +12,6 @@ const FileInput = (props) => {
   const authPath = useSelector (state => state.accounts.authPath)
   return (
     <div className={s.FileInput}>
-      <Account />
       <FileLoader />
       <CredentialsDialog/>
       <Libs />

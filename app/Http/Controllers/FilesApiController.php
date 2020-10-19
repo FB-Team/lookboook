@@ -23,11 +23,6 @@ class FilesApiController extends Controller
      */
     public function index()
     {   
-    try {
-        DB::connection()->getPdo();
-    } catch (\Exception $e) {
-        die("Could not connect to the database.  Please check your configuration. error:" . $e );
-    }
         $id = Auth::id();
         if (!isset($id)){
             $id = 1;
@@ -48,7 +43,7 @@ class FilesApiController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -57,9 +52,14 @@ class FilesApiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $r)
     {
-        //
+        $user = User::find(Auth::id());
+        if ($user){
+            if ($r->isRoot){
+                
+            }
+        }
     }
 
     /**

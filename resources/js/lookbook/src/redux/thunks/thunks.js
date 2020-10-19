@@ -11,18 +11,19 @@ import { setStyles } from '../actions/content/stylesActions';
 import { stylesAPI } from '../../api/stylesAPI/stylesAPI';
 
 
-export const getAllLibs = (login) => async (dispatch) => {
+export const getAllLibs = () => async (dispatch) => {
   try {
-    let response = await filesAPI.getLibs(login)
+    let response = await filesAPI.getLibs()
     dispatch (setLibs (response.libs))
   } catch (e) {
     alert ('Cannot load the libs! Message = ' + e)
   }
 }
 
-export const putBooks = (login, books) => async (dispatch) => {
+export const putBooks = (books) => async (dispatch) => {
   try {
-    let response = await filesAPI.putBooks(login, books)
+    let response = await filesAPI.putBooks( {books})
+    debugger
     dispatch(setCurrentBook(response.content))
     dispatch(setLibs(response.libsTree))
     dispatch(clearSelectedAll())
@@ -30,9 +31,9 @@ export const putBooks = (login, books) => async (dispatch) => {
     alert ('Cannot put books to the server! Message = ' + e)
   }
 }
-export const putBookByUrl = (login, book) => async (dispatch) => {
+export const putBookByUrl = ( book) => async (dispatch) => {
   try {
-    let response = await filesAPI.putBookByUrl(login, book)
+    let response = await filesAPI.putBookByUrl( {book})
     dispatch(setCurrentBook(response.content))
     dispatch(setLibs(response.libsTree))
     dispatch(clearSelectedAll())
@@ -47,19 +48,19 @@ export const putLibs = (libs, books) => async (dispatch) => {
     alert ('Cannot put the libs! Message = ' + e)
   }
 }
-export const getBook = (login, bookName) => async (dispatch) => {
+export const getBook = ( bookName) => async (dispatch) => {
   try {
     dispatch (clearCurrentBook())
-    let response = await filesAPI.getBook (login, bookName)
+    let response = await filesAPI.getBook ( bookName)
     dispatch(setCurrentBook(response.book, bookName))
     return response.book
   } catch (e) {
     alert ('Cannot load a book! Message = ' + e)
   }
 }
-export const getStyles = (login) => async (dispatch) => {
+export const getStyles = () => async (dispatch) => {
   try {
-    let response =  await stylesAPI.getStyles (login)
+    let response =  await stylesAPI.getStyles ()
     let styles = response.styles
     if (typeof styles == 'string') {
       styles = JSON.parse (styles)
@@ -72,10 +73,10 @@ export const getStyles = (login) => async (dispatch) => {
     return null
   }
 }
-export const updateStyles = (login, styles) => async (dispatch) => {
+export const updateStyles = ( styles) => async (dispatch) => {
   try{
     if (!(styles instanceof Object)) { throw new Error ('updateStyles (thunk): is not an object!') }
-    let response =  await stylesAPI.updateStyles (login, styles)
+    let response =  await stylesAPI.updateStyles ( styles)
     dispatch (setStyles(response.styles))
     return response.styles
   } catch (e) {
@@ -83,28 +84,28 @@ export const updateStyles = (login, styles) => async (dispatch) => {
     return null
   }
 }
-export const deleteBook = (login, id) => async (dispatch) => {
+export const deleteBook = ( id) => async (dispatch) => {
   try {
-    let response = await filesAPI.deleteBook (login, Number(id))
+    let response = await filesAPI.deleteBook ( Number(id))
     dispatch (dispatch(setLibs(response.libsTree)))
   } catch (e) {
     alert ("Cannot delete the book: Server error! Message = " + e)
     return null
   }
 }
-export const signIn = (login, password) => async (dispatch) => {
+export const signIn = ( password) => async (dispatch) => {
   try {
-    let response = await accountsAPI.signIn (login, password)
-    dispatch (dispatch(setCredentials(response.login, response.password)))
+    let response = await accountsAPI.signIn ( password)
+    dispatch (dispatch(setCredentials(response. response.password)))
   }catch (e) {
     alert ('Cannot perform a sign in!');
     return null
   }
 }
-export const signUp = (login, password) => async (dispatch) => {
+export const signUp = ( password) => async (dispatch) => {
   try {
-    let response = await accountsAPI.signUp (login, password)
-    dispatch (dispatch(setCredentials(response.login, response.password)))
+    let response = await accountsAPI.signUp ( password)
+    dispatch (dispatch(setCredentials(response. response.password)))
   }catch (e) {
     alert ('Cannot perform a sign up')
   }

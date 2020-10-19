@@ -4,36 +4,36 @@ const filesAxios = axios.create({
     port: 8000
 })
 export const filesAPI = {
-    async getLibs(login) {
-        const response = await filesAxios.get(login)
+    async getLibs() {
+        const response = await filesAxios.get()
         if (response) return response.data
         else throw new Error('FilesAPI: Cannot get response from a server!')
     },
-    async putBooks(login, books) {
-        const response = await filesAxios.post(login, books, {
-            headers: { 'Content-Type': 'multipart/form-data' },
+    async putBooks(books, rootLib, id = null) {
+        const response = await filesAxios.post('', {books, isRoot: rootLib, id:libId}, {
+            headers: { 'Content-Type': 'multipart/form-data' }
         })
         if (response) return response.data
         else throw new Error('FilesAPI: Cannot get response from a server!')
     },
-    async putBookByUrl(login, book) {
-        const response = await filesAxios.post(login, { book })
+    async putBookByUrl(book) {
+        const response = await filesAxios.post({ book })
         if (response) {
             return response.data
-        } else throw new Error('filesAPI, putBookByUrl: no response received from the server!')
+        } else throw new Error('filesAPIputBookByUrl: no response received from the server!')
     },
-    async createLib(login, libName, books) {
-        const response = await filesAxios.put({ login, libName, books })
+    async createLib(libNamebooks) {
+        const response = await filesAxios.put({libNamebooks })
         if (response) return response.data
         else throw new Error('FilesAPI: Cannot get response from a server!')
     },
-    async putLib(login, libs, books) {
-        const response = await filesAxios.put({ login, libs, books })
+    async putLib(libsbooks) {
+        const response = await filesAxios.put({libsbooks })
         if (response) return response.data
         else throw new Error('FilesAPI: Cannot get response from a server!')
     },
-    async getBook(login, name) {
-        const response = await filesAxios.get(`${login}/item`, {
+    async getBook(name) {
+        const response = await filesAxios.get(`item`, {
             params: {
                 name
             }
@@ -41,8 +41,8 @@ export const filesAPI = {
         if (response) return response.data
         else throw new Error('FilesAPI: Cannot get response from a server!')
     },
-    async deleteBook(login, bookName) {
-        const response = await filesAxios.delete(`${login}/${bookName}`)
+    async deleteBook(bookName) {
+        const response = await filesAxios.delete(`bookName`)
         if (response) return response.data
         else throw new Error('FilesAPI: Cannot get response from a server!')
     }
