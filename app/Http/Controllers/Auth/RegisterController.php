@@ -64,10 +64,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+        ]);
+        $user->libs()->create([
+            'name' => 'Ваша библиотека',
+            'type' => 'root',
+            'lib_id' => null
+        ]);
+        $user->settings()->create([
+            'user_type' => 'plain',
+            'user_id' => null,
+            'styles' => '{}'
         ]);
     }
 }

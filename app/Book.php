@@ -11,7 +11,4 @@ class Book extends Model
     {
         return $this->belongsTo('App\Lib');
     }
-    public function rootLib(){
-        return $this->belongsTo('App\RootLib');
-    }
 }

@@ -16,10 +16,7 @@ class CreateLibs extends Migration
         Schema::create('libs', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->morphs('libs');
             $table->text('name', 30);
-            $table->json('books');
-            $table->json('libs');
         });
     }
 

@@ -13,7 +13,6 @@ use App\Http\Requests\FilesUpdateRequest;
 use App\Api\BooksAccessApi;
 use Error;
 use Illuminate\Support\Facades\DB;
-use App\RootLibs;
 class FilesApiController extends Controller
 {
     /**
@@ -29,8 +28,7 @@ class FilesApiController extends Controller
         }
         $user = User::find($id);
         if (isset($user)){
-            //return $results = RootLib::where('user_id', 1)->get();
-            return $this->createLibsTree(RootLib::where('user_id', 1)->get()->first());
+            return $this->createLibsTree($user::libs()->where('type', 'root')->get()->first());
         }
         else throw new \Error("No appropriate users found in the database!");
         
@@ -55,10 +53,40 @@ class FilesApiController extends Controller
     public function store(Request $r)
     {
         $user = User::find(Auth::id());
+        
         if ($user){
-            if ($r->isRoot){
-                
+            $bookLibId = $user->libs()->where('type', 'root')->get()->first()->id;
+            if (isset($r->lib)){
+                $parent_lib = Lib::find($r->lib->parent_id);
+                if (!$parent_lib){
+                    throw new \Error("FilesApiControler::store - Could not find parent lib!");
+                }
+                $parent_lib->lib()->create([
+                    'name' => $r->lib->name,
+                    'type' => 'plain'
+                ]);
+                $bookLibId = $parent_lib->lib->id;
             }
+            if (isset($r->books)){
+                $lib = Lib::find($bookLibId);
+                if (!$lib){
+                    throw new \Error("FilesApiControler::store - cannot find lib by id!");
+                }
+                $dest = "books-$user->id";
+                foreach ($r->books as $book){
+                    if ($r->file($book)->move($dest, $r->file($book)->getClientOriginalName())){
+                        $lib->books()->create([
+                            'name' => $r->file($book)->getClientOriginalName()
+                        ]);
+                    }
+                    else{
+                        throw new \Error("FilesApiControler::store - cannot save the book!");
+                    }
+                }
+                return $this->inex();
+            }
+        }else{
+            //BooksAccess::
         }
     }
 
@@ -115,17 +143,9 @@ class FilesApiController extends Controller
     private function createLibsTree($lib){
         $result['books'] = $lib->books;
         $result['libs'] = [];
-        //return $lib->libs;
-        if (isset($lib->libs)){
-            foreach(json_decode($lib->libs) as $libId){
-                $lib = Lib::find($libId)->get()->first();
-                if ($lib){
-                    $lib['libs'] = $this->createLibsTree($lib);
-                    $result['libs'][] = $lib;
-                }else {
-                    throw new \Error('Cannot find an appropriate lib!');
-                }
-               
+        if ($lib->libs){
+            foreach($lib->libs as $sublib){
+                    $result['libs'][] = $this->createLibsTree($sublib);
             }
         }
 
