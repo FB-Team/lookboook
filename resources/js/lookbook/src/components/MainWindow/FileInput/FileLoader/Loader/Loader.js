@@ -28,11 +28,14 @@ const Loader= (props) => {
   return (
     <div className={s.Loader}>
       <div>
-        <input className={s.selectedFiles} ref={fileInput}type="file" onChange={handleSelection} className={s.input} name="file"  multiple></input>
         <input className={s.urlLoader + ' ' + 'form-control'} onChange={handleChange} type="text" placeholder="Загрузить файл по ссылке"/>
         <div className={s.filesystemSave}>
-          <button onClick={handleFileLoaderClick} className="btn btn-secondary">Загрузить с компьютера</button>
-          <input type="submit" value="Сохранить" className="btn btn-primary"/>
+          <div className="col-8 mx-auto">
+            <button onClick={handleFileLoaderClick} className="btn btn-secondary">Загрузить с компьютера</button>            
+          </div>
+          <div className="col-6 mx-auto">
+            <input type="submit" value="Сохранить" className="btn btn-primary"/>
+          </div>
         </div>
       </div>
     </div>

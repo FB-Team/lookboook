@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { getAllLibs } from '../../../redux/thunks/thunks';
 import Book from './Book/Book';
 import s from './Libs.module.css'
+import Lib from './Lib'
 
 const Libs = (props) => {
   const libs = useSelector (state => state.files.libs);
@@ -10,8 +11,10 @@ const Libs = (props) => {
   const dispatch = useDispatch ();
   useEffect (()=> { dispatch(getAllLibs(login)) }, [props]);
   let libsToDisplay = []
-  if (libs){
-    libsToDisplay = Object.keys(libs).map ((key ,i) => {return <Book key={i} book={libs[key]} id={key}/>})
+  console.log(libs + ', length = ' + libs.length)
+  if (libs.length > 0){
+    console.log(libs)
+    libsToDisplay = Object.keys(libs).map ((key ,i) => {return <Lib key={i} books={libs[key]['root']['books']} id={key}/>})
   }
   return (
     <div className={s.libsContainer}>{libsToDisplay}</div>

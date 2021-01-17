@@ -1,16 +1,16 @@
 import * as axios from 'axios'
 const filesAxios = axios.create({
-    baseURL: 'http://lookbook:8000/api/filesApi',
+    baseURL: 'http://lookbook/api/filesApi/book',
     port: 8000
 })
 export const filesAPI = {
-    async getLibs(login) {
-        const response = await filesAxios.get(login)
+    async getLibs() {
+        const response = await filesAxios.get()
         if (response) return response.data
         else throw new Error('FilesAPI: Cannot get response from a server!')
     },
-    async putBooks(login, books) {
-        const response = await filesAxios.post(login, books, {
+    async putBooks(books) {
+        const response = await filesAxios.post('', books, {
             headers: { 'Content-Type': 'multipart/form-data' },
         })
         if (response) return response.data
@@ -32,10 +32,10 @@ export const filesAPI = {
         if (response) return response.data
         else throw new Error('FilesAPI: Cannot get response from a server!')
     },
-    async getBook(login, name) {
-        const response = await filesAxios.get(`${login}/item`, {
+    async getBook(id) {
+        const response = await filesAxios.get('/book', {
             params: {
-                name
+                id
             }
         })
         if (response) return response.data

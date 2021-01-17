@@ -17,7 +17,7 @@ export const FileLoader = (props) => {
     files.map ( file => {
       data.append(file.name, file, file.name)
     })
-    dispatch(putBooks(login, data))
+    dispatch(putBooks(data))
     if  (fileUrl) {
       dispatch (putBookByUrl (login, fileUrl))
     }

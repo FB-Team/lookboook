@@ -16,9 +16,7 @@ const Account = (props) => {
     dispatch ( changeAuthPath (e.target.dataset.auth) )
   }
   return (
-      <div className={s.Account} onClick={handleClick}>
-
-          <div className={s.image}><img src={defaultAccount} className='img-fluid'/></div>
+      <div className={s.Account} onClick={handleClick}>          
           <span className={s.label}>Ваш аккаунт</span>
 
         <div className={s.authButtons} onClick={changeAuthPath}>

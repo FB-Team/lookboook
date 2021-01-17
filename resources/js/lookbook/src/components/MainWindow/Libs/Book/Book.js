@@ -33,10 +33,10 @@ const Book = (props) => {
   let sizeInKBites = ''
 
   function handleClick (event) {
-      dispatch( getBook (login, props.book.name))
+      dispatch( getBook (props.book.id))
   }
   function deleteBookHandler (event) {
-    dispatch ( deleteBook (login, props.id))
+    dispatch ( deleteBook (props.book.id))
   }
   if (props.book) {
     if (props.book.size) {
@@ -50,14 +50,13 @@ const Book = (props) => {
       setTrashVisibility (false)
     }
     return (
-      <div className={s.Book} onMouseEnter={mouseenter} onMouseLeave={mouseleave}>
-      {trashVisible ? <button className={s.trash + ' ' +'btn btn-danger'} onClick={deleteBookHandler}><img src={trash} alt=""/>
-    </button>: <></>}
-
+      <div className="col-3 container__book" onMouseEnter={mouseenter} onMouseLeave={mouseleave}>
+      {trashVisible ? <div className="btn__trash__wrapper" onClick={deleteBookHandler}><button className={'btn__trash' + ' ' +'btn btn-danger'} ><img src={trash} alt=""/></button></div>
+    : <div></div>}
         <NavLink to='/reader' className={s.link} onClick={handleClick}>
           <div className={s.Book}>
 
-            <div className={s.Books} >
+            <div className="book__img">
               <div><img src={getImage(props.book.mimeType)} alt="Картинка в соответствии с типом данных"/></div>
             </div>
             <div>

@@ -13,9 +13,10 @@ export const DEFAULT_BOOK_NAME = 'Empty'
 let bookName = localStorage.getItem ('currentBook')
 if (!bookName) bookName = DEFAULT_BOOK_NAME
 const initialState = {
-  libs: [defaultLib],
+  libs: [],
   currentBook:     DEFAULT_BOOK_PLACEHOLDER,
   currentBookName: bookName,
+  currentBookId: null,
   bookIsLoaded: false
 }
 const filesReducer = (state = initialState, action) => {
@@ -24,7 +25,7 @@ const filesReducer = (state = initialState, action) => {
     case SETLIBS:
     if (action.libs){
       if(action.libs) {
-        return { ...state, libs: action.libs }
+        return { ...state, libs: [action.libs] }
       }
       else return state
     }
@@ -42,8 +43,8 @@ const filesReducer = (state = initialState, action) => {
     return { libs: action.data, ...state }
 
     case SET_CURRENT_BOOK:
-      localStorage.setItem ('currentBook', action.bookName)
-      return { ...state, currentBook: action.book, currentBookName: action.bookName, bookIsLoaded: true}
+      localStorage.setItem ('currentBook', action.id)
+      return { ...state, currentBook: action.book, currentBookName: action.bookName, currentBookId: action.id, bookIsLoaded: true}
     case SET_BOOK_FLAG:
     return {...state, bookIsLoaded: action.bookState}
 

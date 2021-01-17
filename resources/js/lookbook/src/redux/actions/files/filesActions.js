@@ -32,8 +32,9 @@ export const addBookToLib = (libName, bookData) => ({
   libName,
   bookData
 })
-export const setCurrentBook = (bookContent, bookName) => ({
+export const setCurrentBook = (bookContent, bookName,id) => ({
   type: SET_CURRENT_BOOK,
   book: bookContent,
-  bookName
+  bookName,
+  id
 })

@@ -1,5 +1,5 @@
 <?php
-namespace Api;
+namespace App\Http\Api;
 
 class BooksTransform{
 

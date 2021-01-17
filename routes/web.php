@@ -16,9 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/reader', function () {
+    return view('home');
+});
 Route::group(['prefix' => 'api'], function(){
     Route::group(['prefix' => 'filesApi'], function (){
-        Route::resource('', 'FilesApiController');
+        Route::resource('book', 'FilesApiController');
     });
     Route::group(['prefix' => 'stylesApi'], function(){
         Route::resource('', 'StylesApiController');

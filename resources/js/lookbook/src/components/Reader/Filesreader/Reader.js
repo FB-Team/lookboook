@@ -25,12 +25,13 @@ const Reader = (props) => {
   console.log('readerRender')
   const styles = useSelector (state => state.styles.styles)
   const book = useSelector (state => state.files.currentBook)
-  const bookName = useSelector (state => state.files.currentBookName)
+  const bookId = useSelector (state => state.files.currentBookId)
   const login = useSelector (state => state.accounts.login)
   useEffect (() => {
-    dispatch (getStyles (login))
-    if (book === DEFAULT_BOOK_PLACEHOLDER && bookName !== DEFAULT_BOOK_NAME) {
-      dispatch (getBook (login, bookName))
+    dispatch (getStyles ())
+    if (book === DEFAULT_BOOK_PLACEHOLDER && bookId !== DEFAULT_BOOK_NAME) {
+      console.log('book id = ' + bookId)
+      dispatch (getBook (bookId))
     }
   },
   [props])

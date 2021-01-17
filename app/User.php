@@ -39,7 +39,7 @@ class User extends Authenticatable
     use Notifiable;
 
     public function rootLib(){
-        return $this->hasOne('App\RootLib');
+        return $this->hasOne('App\RootLib', 'user_id');
     }
     public function settings(){
         return $this->hasOne('App\CustomSettings');

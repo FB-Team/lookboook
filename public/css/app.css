@@ -10836,3 +10836,36 @@ a.text-dark:focus {
   }
 }
 
+.container__book {
+  height: 80%;
+}
+
+.container__lib {
+  margin-top: 20px;
+}
+
+.book__img img {
+  width: 100%;
+  height: 100%;
+}
+
+.btn__trash {
+  height: 12px !important;
+  width: 12px;
+  right: 15px;
+  position: absolute;
+}
+
+.btn__trash__wrapper {
+  height: 20px;
+  width: 100%;
+  position: absolute;
+  margin-top: -20px;
+  margin-left: -15px;
+}
+
+.btn__trash img {
+  height: 80% !important;
+  width: 80% !important;
+}
+

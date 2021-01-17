@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRootLibs extends Migration
+class CreateRootLibsNew extends Migration
 {
     /**
      * Run the migrations.
@@ -17,9 +17,9 @@ class CreateRootLibs extends Migration
             $table->id();
             $table->timestamps();
             $table->morphs('user');
-            $table->text('name', 30);
-            $table->json('books');
-            $table->json('libs');
+            $table->text('name', 30)->nullable();
+            $table->json('books')->nullable();
+            $table->json('libs')->nullable();
         });
     }
 

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Api\BooksAccess;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\RootLib;
@@ -10,34 +9,37 @@ use App\Lib;
 use App\User;
 use App\Http\Requests\FilesCreateRequest;
 use App\Http\Requests\FilesUpdateRequest;
-use App\Api\BooksAccessApi;
 use Error;
 use Illuminate\Support\Facades\DB;
 use App\RootLibs;
+use App\Book;
+use App\Traits\ResourcesStorage;
+use App\Http\Api\BooksAccessApi;
 class FilesApiController extends Controller
 {
+    protected $current_user_id;
+    public function __construct()
+    {
+        $this->current_user_id = Auth::user()->id ?? 1;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-    try {
-        DB::connection()->getPdo();
-    } catch (\Exception $e) {
-        die("Could not connect to the database.  Please check your configuration. error:" . $e );
-    }
-        $id = Auth::id();
-        if (!isset($id)){
-            $id = 1;
-        }
+    {      
+        $id = $this->current_user_id;           
         $user = User::find($id);
+        
         if (isset($user)){
-            //return $results = RootLib::where('user_id', 1)->get();
-            return $this->createLibsTree(RootLib::where('user_id', 1)->get()->first());
+            $result = [];
+            $result['libs']['root']['books'] = $user->rootLib->books()->get();            
+            return $result;
+            //! ОСТАВЛЯЮ ДЛЯ ЛУЧШИХ ВРЕМЕН, НУЖНО БУДЕТ ПРИ РЕАЛИЗАЦИИ ИНТЕРФЕЙСА БИБЛИОТЕК
+            // return $this->createLibsTree(RootLib::where('user_id', 1)->get()->first());
         }
-        else throw new \Error("No appropriate users found in the database!");
+        else throw new \Error("No appropriate data found!");
         
     }
 
@@ -57,9 +59,18 @@ class FilesApiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $r){
+        //return 'test';
+        $user = User::find($this->current_user_id);
+        $rootLib = $user->rootLib ?? $user->rootLib()->create(['name' => 'created_automatically','user_type' => 'user','user_id' => $user->id]);
+        foreach ($r->file() as $file) {
+            $path = ResourcesStorage::storeResource($file, $this->current_user_id);
+            $rootLib->books()->create(['name' => $file->getClientOriginalName(), 'extension' => $file->extension(), 'path' => $path, 'size' => 0]);        
+        }
+        
+        
+        
+        return $rootLib->books;
     }
 
     /**
@@ -68,9 +79,9 @@ class FilesApiController extends Controller
      * @param  int  $id of the book
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $r)
     {
-        return BooksAccess::getBook($id);
+        return BooksAccessApi::getBook($r['id']);
     }
 
     /**
@@ -81,7 +92,7 @@ class FilesApiController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**

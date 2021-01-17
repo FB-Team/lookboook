@@ -7312,7 +7312,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../../../no
 
 
 // module
-exports.push([module.i, ":root {\r\n  --filesystemInputHeight: 20px;\r\n  --height:                90px;\r\n  --selectedButtonWidth:   180px;\r\n}\r\n.Loader {\r\n  position: relative;\r\n    width: var(--fileLoaderWidth);\r\n    background-color: white;\r\n    display: flex;\r\n    justify-content: center;\r\n    flex-direction: column;\r\n}\r\n.input{\r\n  display: none;\r\n}\r\n.selectedFiles {\r\n  width:100px;\r\n}\r\n.urlLoader {\r\n  width: 60%;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  height:28px;\r\n}\r\n.Loader button {\r\n  margin-right: 2px;\r\n}\r\n.filesystemSave {\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: center;\r\n  margin-top: 10px;\r\n}\r\n.filesystemSave input {\r\n  {/*height: var(--filesystemInputHeight);*/}\r\n}\r\n.Loader div {\r\n\r\n}\r\n", ""]);
+exports.push([module.i, ":root {\r\n  --filesystemInputHeight: 20px;\r\n  --height:                90px;\r\n  --selectedButtonWidth:   180px;\r\n}\r\n.Loader {\r\n  position: relative;\r\n    width: var(--fileLoaderWidth);\r\n    background-color: white;\r\n    display: flex;\r\n    justify-content: center;\r\n    flex-direction: column;\r\n}\r\n.input{\r\n  display: none;\r\n}\r\n.selectedFiles {\r\n  width:100px;\r\n}\r\n.urlLoader {\r\n  width: 60%;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  height:28px;\r\n}\r\n.Loader button {\r\n  margin-right: 2px;\r\n}\r\n.filesystemSave {\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: center;\r\n  margin-top: 10px;\r\n}\r\n.filesystemSave {\r\n  \r\n}\r\n\r\n.Loader div {\r\n\r\n}\r\n", ""]);
 
 // exports
 
@@ -7351,6 +7351,25 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../../node_
 
 // module
 exports.push([module.i, ".Book {\r\n  width: 200px;\r\n  margin: 0 auto;\r\n}\r\n.Books{\r\n  position: relative;\r\n  text-align: left;\r\n  display:flex;\r\n  flex-direction: row;\r\n  height: 100px;\r\n  width: 100px;\r\n}\r\n.link {\r\n  text-align: left;\r\n}\r\n.Books img {\r\n  align-self: center;\r\n  height: 100px;\r\n}\r\n.Book a {\r\n    text-decoration: none;\r\n    color: black;\r\n}\r\n.Books div {\r\n  text-align: center;\r\n}\r\n.name {\r\n  position: relative;\r\n  left: 0px;\r\n  top: 0px;\r\n}\r\n.trash {\r\n  float: right;\r\n}\r\n\r\n.trash img {\r\n  height: 20px;\r\n\r\n}\r\n.size {\r\n  position: relative;\r\n\r\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/lookbook/src/components/MainWindow/Libs/Lib.module.css":
+/*!*************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/lookbook/src/components/MainWindow/Libs/Lib.module.css ***!
+  \*************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".input{\r\n  display: none;\r\n}\r\n.libsContainer {\r\n  display: grid;\r\n  grid-template-columns: 1fr 1fr 1fr 1fr;\r\n  margin-top: 20px;\r\n  margin-left: auto;\r\n}\r\n", ""]);
 
 // exports
 
@@ -75110,11 +75129,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 var filesAxios = axios__WEBPACK_IMPORTED_MODULE_1__["create"]({
-  baseURL: 'http://lookbook:8000/api/filesApi',
+  baseURL: 'http://lookbook/api/filesApi/book',
   port: 8000
 });
 var filesAPI = {
-  getLibs: function getLibs(login) {
+  getLibs: function getLibs() {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
@@ -75122,7 +75141,7 @@ var filesAPI = {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return filesAxios.get(login);
+              return filesAxios.get();
 
             case 2:
               response = _context.sent;
@@ -75145,7 +75164,7 @@ var filesAPI = {
       }, _callee);
     }))();
   },
-  putBooks: function putBooks(login, books) {
+  putBooks: function putBooks(books) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
@@ -75153,7 +75172,7 @@ var filesAPI = {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.next = 2;
-              return filesAxios.post(login, books, {
+              return filesAxios.post('', books, {
                 headers: {
                   'Content-Type': 'multipart/form-data'
                 }
@@ -75283,7 +75302,7 @@ var filesAPI = {
       }, _callee5);
     }))();
   },
-  getBook: function getBook(login, name) {
+  getBook: function getBook(id) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
@@ -75291,9 +75310,9 @@ var filesAPI = {
           switch (_context6.prev = _context6.next) {
             case 0:
               _context6.next = 2;
-              return filesAxios.get("".concat(login, "/item"), {
+              return filesAxios.get('/book', {
                 params: {
-                  name: name
+                  id: id
                 }
               });
 
@@ -75553,12 +75572,7 @@ var Account = function Account(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
     className: _Account_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.Account,
     onClick: handleClick
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-    className: _Account_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.image
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("img", {
-    src: _assets_defaultAccount_png__WEBPACK_IMPORTED_MODULE_4___default.a,
-    className: "img-fluid"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", {
     className: _Account_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.label
   }, "\u0412\u0430\u0448 \u0430\u043A\u043A\u0430\u0443\u043D\u0442"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
     className: _Account_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.authButtons,
@@ -75693,7 +75707,7 @@ var FileInput = function FileInput(props) {
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
     className: _FileInput_module_css__WEBPACK_IMPORTED_MODULE_7___default.a.FileInput
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_Account_Account__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_FileLoader_FileLoader__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_CredentialsDialog_CredentialsDialog__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_Libs_Libs__WEBPACK_IMPORTED_MODULE_6__["default"], null));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_FileLoader_FileLoader__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_Libs_Libs__WEBPACK_IMPORTED_MODULE_6__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (FileInput);
@@ -75775,7 +75789,7 @@ var FileLoader = function FileLoader(props) {
     files.map(function (file) {
       data.append(file.name, file, file.name);
     });
-    dispatch(Object(_redux_thunks_thunks__WEBPACK_IMPORTED_MODULE_2__["putBooks"])(login, data));
+    dispatch(Object(_redux_thunks_thunks__WEBPACK_IMPORTED_MODULE_2__["putBooks"])(data));
 
     if (fileUrl) {
       dispatch(Object(_redux_thunks_thunks__WEBPACK_IMPORTED_MODULE_2__["putBookByUrl"])(login, fileUrl));
@@ -75840,8 +75854,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FileInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../FileInput */ "./resources/js/lookbook/src/components/MainWindow/FileInput/FileInput.js");
 /* harmony import */ var _Loader_module_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Loader.module.css */ "./resources/js/lookbook/src/components/MainWindow/FileInput/FileLoader/Loader/Loader.module.css");
 /* harmony import */ var _Loader_module_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_Loader_module_css__WEBPACK_IMPORTED_MODULE_5__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -75850,8 +75862,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 var Loader = function Loader(props) {
-  var _React$createElement;
-
   var fileInput = Object(react__WEBPACK_IMPORTED_MODULE_2__["useRef"])(null);
   var selectedFiles = Object(react__WEBPACK_IMPORTED_MODULE_2__["useRef"])(null);
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
@@ -75872,26 +75882,25 @@ var Loader = function Loader(props) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
     className: _Loader_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.Loader
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", (_React$createElement = {
-    className: _Loader_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.selectedFiles,
-    ref: fileInput,
-    type: "file",
-    onChange: handleSelection
-  }, _defineProperty(_React$createElement, "className", _Loader_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.input), _defineProperty(_React$createElement, "name", "file"), _defineProperty(_React$createElement, "multiple", true), _React$createElement)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", {
     className: _Loader_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.urlLoader + ' ' + 'form-control',
     onChange: handleChange,
     type: "text",
     placeholder: "\u0417\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0444\u0430\u0439\u043B \u043F\u043E \u0441\u0441\u044B\u043B\u043A\u0435"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
     className: _Loader_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.filesystemSave
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    className: "col-8 mx-auto"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
     onClick: handleFileLoaderClick,
     className: "btn btn-secondary"
-  }, "\u0417\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441 \u043A\u043E\u043C\u043F\u044C\u044E\u0442\u0435\u0440\u0430"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", {
+  }, "\u0417\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0441 \u043A\u043E\u043C\u043F\u044C\u044E\u0442\u0435\u0440\u0430")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    className: "col-6 mx-auto"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", {
     type: "submit",
     value: "\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C",
     className: "btn btn-primary"
-  }))));
+  })))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Loader);
@@ -76108,11 +76117,11 @@ var Book = function Book(props) {
   var sizeInKBites = '';
 
   function handleClick(event) {
-    dispatch(Object(_redux_thunks_thunks__WEBPACK_IMPORTED_MODULE_4__["getBook"])(login, props.book.name));
+    dispatch(Object(_redux_thunks_thunks__WEBPACK_IMPORTED_MODULE_4__["getBook"])(props.book.id));
   }
 
   function deleteBookHandler(event) {
-    dispatch(Object(_redux_thunks_thunks__WEBPACK_IMPORTED_MODULE_4__["deleteBook"])(login, props.id));
+    dispatch(Object(_redux_thunks_thunks__WEBPACK_IMPORTED_MODULE_4__["deleteBook"])(props.book.id));
   }
 
   if (props.book) {
@@ -76130,23 +76139,25 @@ var Book = function Book(props) {
     }
 
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
-      className: _Book_module_css__WEBPACK_IMPORTED_MODULE_8___default.a.Book,
+      className: "col-3 container__book",
       onMouseEnter: mouseenter,
       onMouseLeave: mouseleave
-    }, trashVisible ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("button", {
-      className: _Book_module_css__WEBPACK_IMPORTED_MODULE_8___default.a.trash + ' ' + 'btn btn-danger',
+    }, trashVisible ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+      className: "btn__trash__wrapper",
       onClick: deleteBookHandler
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("button", {
+      className: 'btn__trash' + ' ' + 'btn btn-danger'
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("img", {
       src: _assets_trash_png__WEBPACK_IMPORTED_MODULE_9___default.a,
       alt: ""
-    })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_3___default.a.Fragment, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+    }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
       to: "/reader",
       className: _Book_module_css__WEBPACK_IMPORTED_MODULE_8___default.a.link,
       onClick: handleClick
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
       className: _Book_module_css__WEBPACK_IMPORTED_MODULE_8___default.a.Book
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
-      className: _Book_module_css__WEBPACK_IMPORTED_MODULE_8___default.a.Books
+      className: "book__img"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("img", {
       src: getImage(props.book.mimeType),
       alt: "\u041A\u0430\u0440\u0442\u0438\u043D\u043A\u0430 \u0432 \u0441\u043E\u043E\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0438\u0438 \u0441 \u0442\u0438\u043F\u043E\u043C \u0434\u0430\u043D\u043D\u044B\u0445"
@@ -76194,6 +76205,75 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./resources/js/lookbook/src/components/MainWindow/Libs/Lib.js":
+/*!*********************************************************************!*\
+  !*** ./resources/js/lookbook/src/components/MainWindow/Libs/Lib.js ***!
+  \*********************************************************************/
+/*! exports provided: Lib, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Lib", function() { return Lib; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Book_Book__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Book/Book */ "./resources/js/lookbook/src/components/MainWindow/Libs/Book/Book.js");
+/* harmony import */ var _Lib_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Lib.module.css */ "./resources/js/lookbook/src/components/MainWindow/Libs/Lib.module.css");
+/* harmony import */ var _Lib_module_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Lib_module_css__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+var Lib = function Lib(props) {
+  var books = [];
+
+  if (props.books) {
+    books = props.books.map(function (book, i) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Book_Book__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        key: i,
+        book: book
+      });
+    });
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "container__lib row justify-content-center"
+    }, books);
+  } else {
+    return "No books found";
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (Lib);
+
+/***/ }),
+
+/***/ "./resources/js/lookbook/src/components/MainWindow/Libs/Lib.module.css":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/lookbook/src/components/MainWindow/Libs/Lib.module.css ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../../../node_modules/css-loader??ref--6-1!../../../../../../../node_modules/postcss-loader/src??ref--6-2!./Lib.module.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/lookbook/src/components/MainWindow/Libs/Lib.module.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./resources/js/lookbook/src/components/MainWindow/Libs/Libs.js":
 /*!**********************************************************************!*\
   !*** ./resources/js/lookbook/src/components/MainWindow/Libs/Libs.js ***!
@@ -76210,6 +76290,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Book_Book__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Book/Book */ "./resources/js/lookbook/src/components/MainWindow/Libs/Book/Book.js");
 /* harmony import */ var _Libs_module_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Libs.module.css */ "./resources/js/lookbook/src/components/MainWindow/Libs/Libs.module.css");
 /* harmony import */ var _Libs_module_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_Libs_module_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Lib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Lib */ "./resources/js/lookbook/src/components/MainWindow/Libs/Lib.js");
+
 
 
 
@@ -76228,12 +76310,14 @@ var Libs = function Libs(props) {
     dispatch(Object(_redux_thunks_thunks__WEBPACK_IMPORTED_MODULE_2__["getAllLibs"])(login));
   }, [props]);
   var libsToDisplay = [];
+  console.log(libs + ', length = ' + libs.length);
 
-  if (libs) {
+  if (libs.length > 0) {
+    console.log(libs);
     libsToDisplay = Object.keys(libs).map(function (key, i) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Book_Book__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Lib__WEBPACK_IMPORTED_MODULE_5__["default"], {
         key: i,
-        book: libs[key],
+        books: libs[key]['root']['books'],
         id: key
       });
     });
@@ -76372,17 +76456,18 @@ var Reader = function Reader(props) {
   var book = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
     return state.files.currentBook;
   });
-  var bookName = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
-    return state.files.currentBookName;
+  var bookId = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
+    return state.files.currentBookId;
   });
   var login = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
     return state.accounts.login;
   });
   Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () {
-    dispatch(Object(_redux_thunks_thunks__WEBPACK_IMPORTED_MODULE_5__["getStyles"])(login));
+    dispatch(Object(_redux_thunks_thunks__WEBPACK_IMPORTED_MODULE_5__["getStyles"])());
 
-    if (book === _redux_reducers_files_filesReducer__WEBPACK_IMPORTED_MODULE_4__["DEFAULT_BOOK_PLACEHOLDER"] && bookName !== _redux_reducers_files_filesReducer__WEBPACK_IMPORTED_MODULE_4__["DEFAULT_BOOK_NAME"]) {
-      dispatch(Object(_redux_thunks_thunks__WEBPACK_IMPORTED_MODULE_5__["getBook"])(login, bookName));
+    if (book === _redux_reducers_files_filesReducer__WEBPACK_IMPORTED_MODULE_4__["DEFAULT_BOOK_PLACEHOLDER"] && bookId !== _redux_reducers_files_filesReducer__WEBPACK_IMPORTED_MODULE_4__["DEFAULT_BOOK_NAME"]) {
+      console.log('book id = ' + bookId);
+      dispatch(Object(_redux_thunks_thunks__WEBPACK_IMPORTED_MODULE_5__["getBook"])(bookId));
     }
   }, [props]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"], {
@@ -76844,11 +76929,12 @@ var addBookToLib = function addBookToLib(libName, bookData) {
     bookData: bookData
   };
 };
-var setCurrentBook = function setCurrentBook(bookContent, bookName) {
+var setCurrentBook = function setCurrentBook(bookContent, bookName, id) {
   return {
     type: SET_CURRENT_BOOK,
     book: bookContent,
-    bookName: bookName
+    bookName: bookName,
+    id: id
   };
 };
 
@@ -77124,9 +77210,10 @@ var DEFAULT_BOOK_NAME = 'Empty';
 var bookName = localStorage.getItem('currentBook');
 if (!bookName) bookName = DEFAULT_BOOK_NAME;
 var initialState = {
-  libs: [defaultLib],
+  libs: [],
   currentBook: DEFAULT_BOOK_PLACEHOLDER,
   currentBookName: bookName,
+  currentBookId: null,
   bookIsLoaded: false
 };
 
@@ -77139,7 +77226,7 @@ var filesReducer = function filesReducer() {
       if (action.libs) {
         if (action.libs) {
           return _objectSpread(_objectSpread({}, state), {}, {
-            libs: action.libs
+            libs: [action.libs]
           });
         } else return state;
       }
@@ -77163,10 +77250,11 @@ var filesReducer = function filesReducer() {
       }, state);
 
     case _actions_files_filesActions__WEBPACK_IMPORTED_MODULE_0__["SET_CURRENT_BOOK"]:
-      localStorage.setItem('currentBook', action.bookName);
+      localStorage.setItem('currentBook', action.id);
       return _objectSpread(_objectSpread({}, state), {}, {
         currentBook: action.book,
         currentBookName: action.bookName,
+        currentBookId: action.id,
         bookIsLoaded: true
       });
 
@@ -77357,7 +77445,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-var getAllLibs = function getAllLibs(login) {
+var getAllLibs = function getAllLibs() {
   return /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(dispatch) {
       var response;
@@ -77367,7 +77455,7 @@ var getAllLibs = function getAllLibs(login) {
             case 0:
               _context.prev = 0;
               _context.next = 3;
-              return _api_filesAPI_filesAPI__WEBPACK_IMPORTED_MODULE_4__["filesAPI"].getLibs(login);
+              return _api_filesAPI_filesAPI__WEBPACK_IMPORTED_MODULE_4__["filesAPI"].getLibs();
 
             case 3:
               response = _context.sent;
@@ -77393,7 +77481,7 @@ var getAllLibs = function getAllLibs(login) {
     };
   }();
 };
-var putBooks = function putBooks(login, books) {
+var putBooks = function putBooks(books) {
   return /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(dispatch) {
       var response;
@@ -77403,7 +77491,7 @@ var putBooks = function putBooks(login, books) {
             case 0:
               _context2.prev = 0;
               _context2.next = 3;
-              return _api_filesAPI_filesAPI__WEBPACK_IMPORTED_MODULE_4__["filesAPI"].putBooks(login, books);
+              return _api_filesAPI_filesAPI__WEBPACK_IMPORTED_MODULE_4__["filesAPI"].putBooks(books);
 
             case 3:
               response = _context2.sent;
@@ -77431,7 +77519,7 @@ var putBooks = function putBooks(login, books) {
     };
   }();
 };
-var putBookByUrl = function putBookByUrl(login, book) {
+var putBookByUrl = function putBookByUrl(book) {
   return /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(dispatch) {
       var response;
@@ -77441,7 +77529,7 @@ var putBookByUrl = function putBookByUrl(login, book) {
             case 0:
               _context3.prev = 0;
               _context3.next = 3;
-              return _api_filesAPI_filesAPI__WEBPACK_IMPORTED_MODULE_4__["filesAPI"].putBookByUrl(login, book);
+              return _api_filesAPI_filesAPI__WEBPACK_IMPORTED_MODULE_4__["filesAPI"].putBookByUrl(book);
 
             case 3:
               response = _context3.sent;
@@ -77507,7 +77595,7 @@ var putLibs = function putLibs(libs, books) {
     };
   }();
 };
-var getBook = function getBook(login, bookName) {
+var getBook = function getBook(id) {
   return /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(dispatch) {
       var response;
@@ -77518,12 +77606,12 @@ var getBook = function getBook(login, bookName) {
               _context5.prev = 0;
               dispatch(Object(_actions_files_filesActions__WEBPACK_IMPORTED_MODULE_2__["clearCurrentBook"])());
               _context5.next = 4;
-              return _api_filesAPI_filesAPI__WEBPACK_IMPORTED_MODULE_4__["filesAPI"].getBook(login, bookName);
+              return _api_filesAPI_filesAPI__WEBPACK_IMPORTED_MODULE_4__["filesAPI"].getBook(id);
 
             case 4:
               response = _context5.sent;
-              dispatch(Object(_actions_files_filesActions__WEBPACK_IMPORTED_MODULE_2__["setCurrentBook"])(response.book, bookName));
-              return _context5.abrupt("return", response.book);
+              dispatch(Object(_actions_files_filesActions__WEBPACK_IMPORTED_MODULE_2__["setCurrentBook"])(response.content, response.meta.name, id));
+              return _context5.abrupt("return", response.content);
 
             case 9:
               _context5.prev = 9;
@@ -77543,7 +77631,7 @@ var getBook = function getBook(login, bookName) {
     };
   }();
 };
-var getStyles = function getStyles(login) {
+var getStyles = function getStyles() {
   return /*#__PURE__*/function () {
     var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(dispatch) {
       var response, styles;
@@ -77553,7 +77641,7 @@ var getStyles = function getStyles(login) {
             case 0:
               _context6.prev = 0;
               _context6.next = 3;
-              return _api_stylesAPI_stylesAPI__WEBPACK_IMPORTED_MODULE_7__["stylesAPI"].getStyles(login);
+              return _api_stylesAPI_stylesAPI__WEBPACK_IMPORTED_MODULE_7__["stylesAPI"].getStyles();
 
             case 3:
               response = _context6.sent;
@@ -77586,7 +77674,7 @@ var getStyles = function getStyles(login) {
     };
   }();
 };
-var updateStyles = function updateStyles(login, styles) {
+var updateStyles = function updateStyles(styles) {
   return /*#__PURE__*/function () {
     var _ref7 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(dispatch) {
       var response;
@@ -77605,7 +77693,7 @@ var updateStyles = function updateStyles(login, styles) {
 
             case 3:
               _context7.next = 5;
-              return _api_stylesAPI_stylesAPI__WEBPACK_IMPORTED_MODULE_7__["stylesAPI"].updateStyles(login, styles);
+              return _api_stylesAPI_stylesAPI__WEBPACK_IMPORTED_MODULE_7__["stylesAPI"].updateStyles(styles);
 
             case 5:
               response = _context7.sent;
@@ -77631,7 +77719,7 @@ var updateStyles = function updateStyles(login, styles) {
     };
   }();
 };
-var deleteBook = function deleteBook(login, id) {
+var deleteBook = function deleteBook(id) {
   return /*#__PURE__*/function () {
     var _ref8 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(dispatch) {
       var response;
@@ -77641,7 +77729,7 @@ var deleteBook = function deleteBook(login, id) {
             case 0:
               _context8.prev = 0;
               _context8.next = 3;
-              return _api_filesAPI_filesAPI__WEBPACK_IMPORTED_MODULE_4__["filesAPI"].deleteBook(login, Number(id));
+              return _api_filesAPI_filesAPI__WEBPACK_IMPORTED_MODULE_4__["filesAPI"].deleteBook(Number(id));
 
             case 3:
               response = _context8.sent;
@@ -77668,7 +77756,7 @@ var deleteBook = function deleteBook(login, id) {
     };
   }();
 };
-var signIn = function signIn(login, password) {
+var signIn = function signIn(password) {
   return /*#__PURE__*/function () {
     var _ref9 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9(dispatch) {
       var response;
@@ -77678,11 +77766,11 @@ var signIn = function signIn(login, password) {
             case 0:
               _context9.prev = 0;
               _context9.next = 3;
-              return _api_accountsAPI_accountsAPI__WEBPACK_IMPORTED_MODULE_1__["accountsAPI"].signIn(login, password);
+              return _api_accountsAPI_accountsAPI__WEBPACK_IMPORTED_MODULE_1__["accountsAPI"].signIn(password);
 
             case 3:
               response = _context9.sent;
-              dispatch(dispatch(Object(_actions_accounts_accountActions__WEBPACK_IMPORTED_MODULE_5__["setCredentials"])(response.login, response.password)));
+              dispatch(dispatch(Object(_actions_accounts_accountActions__WEBPACK_IMPORTED_MODULE_5__["setCredentials"])(response.response.password)));
               _context9.next = 11;
               break;
 
@@ -77705,7 +77793,7 @@ var signIn = function signIn(login, password) {
     };
   }();
 };
-var signUp = function signUp(login, password) {
+var signUp = function signUp(password) {
   return /*#__PURE__*/function () {
     var _ref10 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10(dispatch) {
       var response;
@@ -77715,11 +77803,11 @@ var signUp = function signUp(login, password) {
             case 0:
               _context10.prev = 0;
               _context10.next = 3;
-              return _api_accountsAPI_accountsAPI__WEBPACK_IMPORTED_MODULE_1__["accountsAPI"].signUp(login, password);
+              return _api_accountsAPI_accountsAPI__WEBPACK_IMPORTED_MODULE_1__["accountsAPI"].signUp(password);
 
             case 3:
               response = _context10.sent;
-              dispatch(dispatch(Object(_actions_accounts_accountActions__WEBPACK_IMPORTED_MODULE_5__["setCredentials"])(response.login, response.password)));
+              dispatch(dispatch(Object(_actions_accounts_accountActions__WEBPACK_IMPORTED_MODULE_5__["setCredentials"])(response.response.password)));
               _context10.next = 10;
               break;
 
@@ -77762,8 +77850,8 @@ var signUp = function signUp(login, password) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\pylke\Downloads\OSPanel\domains\LookBook\lookboook\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\pylke\Downloads\OSPanel\domains\LookBook\lookboook\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! B:\OpenServer\domains\lookboook\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! B:\OpenServer\domains\lookboook\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
