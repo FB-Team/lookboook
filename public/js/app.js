@@ -7243,25 +7243,6 @@ exports.push([module.i, ".App {\r\n  text-align: center;\r\n}\r\n.testDiplay{\r\
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/lookbook/src/components/MainWindow/Account/Account.module.css":
-/*!********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/lookbook/src/components/MainWindow/Account/Account.module.css ***!
-  \********************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".Account{\r\n  width: -moz-fit-content;\r\n  width: fit-content;\r\n  flex-direction: column;\r\n  margin-left: auto;\r\n  margin-right: 20px;\r\n  margin-top: 20px;\r\n}\r\n.Account:hover {\r\n  cursor: pointer;\r\n}\r\n.image img{\r\n  height: 60px;\r\n  border-radius: 50%;\r\n}\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/lookbook/src/components/MainWindow/FileInput/FileInput.module.css":
 /*!************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/lookbook/src/components/MainWindow/FileInput/FileInput.module.css ***!
@@ -75312,7 +75293,7 @@ var filesAPI = {
               _context6.next = 2;
               return filesAxios.get('/book', {
                 params: {
-                  id: id
+                  'id': id
                 }
               });
 
@@ -75394,7 +75375,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 var stylesAxios = axios__WEBPACK_IMPORTED_MODULE_1__["create"]({
-  baseURL: 'http://lookbook:8000/api/stylesApi'
+  baseURL: 'http://lookbook/api/stylesApi'
 });
 var stylesAPI = {
   getStyles: function getStyles() {
@@ -75474,17 +75455,6 @@ module.exports = "/images/bookLogo.png?fcaf08fba0b867b190e6a80b074e03ea";
 
 /***/ }),
 
-/***/ "./resources/js/lookbook/src/assets/defaultAccount.png":
-/*!*************************************************************!*\
-  !*** ./resources/js/lookbook/src/assets/defaultAccount.png ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/defaultAccount.png?853277ea2146405bf82d5af081ce424a";
-
-/***/ }),
-
 /***/ "./resources/js/lookbook/src/assets/docx.png":
 /*!***************************************************!*\
   !*** ./resources/js/lookbook/src/assets/docx.png ***!
@@ -75529,150 +75499,6 @@ module.exports = "/images/txt.png?95b2f51b341cca957aa85b44d1629266";
 
 /***/ }),
 
-/***/ "./resources/js/lookbook/src/components/MainWindow/Account/Account.js":
-/*!****************************************************************************!*\
-  !*** ./resources/js/lookbook/src/components/MainWindow/Account/Account.js ***!
-  \****************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "./node_modules/bootstrap/dist/css/bootstrap.css");
-/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _redux_actions_content_credentialsDialog__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../redux/actions/content/credentialsDialog */ "./resources/js/lookbook/src/redux/actions/content/credentialsDialog.js");
-/* harmony import */ var _assets_defaultAccount_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../assets/defaultAccount.png */ "./resources/js/lookbook/src/assets/defaultAccount.png");
-/* harmony import */ var _assets_defaultAccount_png__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_assets_defaultAccount_png__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _Account_module_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Account.module.css */ "./resources/js/lookbook/src/components/MainWindow/Account/Account.module.css");
-/* harmony import */ var _Account_module_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_Account_module_css__WEBPACK_IMPORTED_MODULE_5__);
-
-
-
-
-
-
-
-var Account = function Account(props) {
-  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
-  var isVisible = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
-    return state.dialog.isVisible;
-  });
-
-  function handleClick(e) {
-    if (!isVisible) dispatch(Object(_redux_actions_content_credentialsDialog__WEBPACK_IMPORTED_MODULE_3__["toggle"])());
-  }
-
-  function changeAuthPath(e) {
-    dispatch(changeAuthPath(e.target.dataset.auth));
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-    className: _Account_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.Account,
-    onClick: handleClick
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", {
-    className: _Account_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.label
-  }, "\u0412\u0430\u0448 \u0430\u043A\u043A\u0430\u0443\u043D\u0442"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-    className: _Account_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.authButtons,
-    onClick: changeAuthPath
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
-    "data-auth": "sign-in"
-  }, "Sign in"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
-    "data-auth": "sign-up"
-  }, "Sign up")));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Account);
-
-/***/ }),
-
-/***/ "./resources/js/lookbook/src/components/MainWindow/Account/Account.module.css":
-/*!************************************************************************************!*\
-  !*** ./resources/js/lookbook/src/components/MainWindow/Account/Account.module.css ***!
-  \************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../../../../../node_modules/css-loader??ref--6-1!../../../../../../../node_modules/postcss-loader/src??ref--6-2!./Account.module.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/lookbook/src/components/MainWindow/Account/Account.module.css");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
-/***/ "./resources/js/lookbook/src/components/MainWindow/FileInput/CredentialsDialog/CredentialsDialog.js":
-/*!**********************************************************************************************************!*\
-  !*** ./resources/js/lookbook/src/components/MainWindow/FileInput/CredentialsDialog/CredentialsDialog.js ***!
-  \**********************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  display: ", ";\n  position: fixed;\n\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-
-
-
-
-var Dialog = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].div(_templateObject(), function (props) {
-  return props.display;
-});
-
-var CredentialsDialog = function CredentialsDialog(props) {
-  var display = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
-    return state.dialog.isVisible;
-  });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Dialog, {
-    display: 'flex'
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"], {
-    path: "/sign-in"
-  }, "This is a sign in"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"], {
-    path: "/sign-up"
-  }, "This is a sign up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["NavLink"], {
-    to: "/auth"
-  }, "SIGNIN"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["NavLink"], {
-    to: "/auth/sign-up"
-  }, "SIGNUP"));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (CredentialsDialog);
-
-/***/ }),
-
 /***/ "./resources/js/lookbook/src/components/MainWindow/FileInput/FileInput.js":
 /*!********************************************************************************!*\
   !*** ./resources/js/lookbook/src/components/MainWindow/FileInput/FileInput.js ***!
@@ -75686,14 +75512,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Account_Account__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Account/Account */ "./resources/js/lookbook/src/components/MainWindow/Account/Account.js");
-/* harmony import */ var _CredentialsDialog_CredentialsDialog__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./CredentialsDialog/CredentialsDialog */ "./resources/js/lookbook/src/components/MainWindow/FileInput/CredentialsDialog/CredentialsDialog.js");
-/* harmony import */ var _FileLoader_FileLoader__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./FileLoader/FileLoader */ "./resources/js/lookbook/src/components/MainWindow/FileInput/FileLoader/FileLoader.js");
-/* harmony import */ var _Libs_Libs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Libs/Libs */ "./resources/js/lookbook/src/components/MainWindow/Libs/Libs.js");
-/* harmony import */ var _FileInput_module_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./FileInput.module.css */ "./resources/js/lookbook/src/components/MainWindow/FileInput/FileInput.module.css");
-/* harmony import */ var _FileInput_module_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_FileInput_module_css__WEBPACK_IMPORTED_MODULE_7__);
-
-
+/* harmony import */ var _FileLoader_FileLoader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FileLoader/FileLoader */ "./resources/js/lookbook/src/components/MainWindow/FileInput/FileLoader/FileLoader.js");
+/* harmony import */ var _Libs_Libs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Libs/Libs */ "./resources/js/lookbook/src/components/MainWindow/Libs/Libs.js");
+/* harmony import */ var _FileInput_module_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./FileInput.module.css */ "./resources/js/lookbook/src/components/MainWindow/FileInput/FileInput.module.css");
+/* harmony import */ var _FileInput_module_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_FileInput_module_css__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
@@ -75706,8 +75528,11 @@ var FileInput = function FileInput(props) {
     return state.accounts.authPath;
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-    className: _FileInput_module_css__WEBPACK_IMPORTED_MODULE_7___default.a.FileInput
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_FileLoader_FileLoader__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_Libs_Libs__WEBPACK_IMPORTED_MODULE_6__["default"], null));
+    className: _FileInput_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.FileInput
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"], {
+    exact: true,
+    path: "/"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_FileLoader_FileLoader__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_Libs_Libs__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (FileInput);
@@ -75854,6 +75679,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FileInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../FileInput */ "./resources/js/lookbook/src/components/MainWindow/FileInput/FileInput.js");
 /* harmony import */ var _Loader_module_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Loader.module.css */ "./resources/js/lookbook/src/components/MainWindow/FileInput/FileLoader/Loader/Loader.module.css");
 /* harmony import */ var _Loader_module_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_Loader_module_css__WEBPACK_IMPORTED_MODULE_5__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -75862,6 +75689,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Loader = function Loader(props) {
+  var _React$createElement;
+
   var fileInput = Object(react__WEBPACK_IMPORTED_MODULE_2__["useRef"])(null);
   var selectedFiles = Object(react__WEBPACK_IMPORTED_MODULE_2__["useRef"])(null);
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
@@ -75882,7 +75711,12 @@ var Loader = function Loader(props) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
     className: _Loader_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.Loader
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", (_React$createElement = {
+    className: _Loader_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.selectedFiles,
+    ref: fileInput,
+    type: "file",
+    onChange: handleSelection
+  }, _defineProperty(_React$createElement, "className", _Loader_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.input), _defineProperty(_React$createElement, "name", "file"), _defineProperty(_React$createElement, "multiple", true), _React$createElement)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", {
     className: _Loader_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.urlLoader + ' ' + 'form-control',
     onChange: handleChange,
     type: "text",
@@ -76657,7 +76491,7 @@ var ControlsItem = function ControlsItem(props) {
       styles: {}
     };
     styleToSend.styles[propName] = e.target.value;
-    dispatch(Object(_redux_thunks_thunks__WEBPACK_IMPORTED_MODULE_3__["updateStyles"])(login, styleToSend));
+    dispatch(Object(_redux_thunks_thunks__WEBPACK_IMPORTED_MODULE_3__["updateStyles"])(styleToSend));
   } // ЕСЛИ ДАННЫЕ НЕ ПРИШЛИ, ТО И РЕНДЕРИТЬ НИЧЕГО НЕ НУЖНО
 
 
@@ -77610,7 +77444,7 @@ var getBook = function getBook(id) {
 
             case 4:
               response = _context5.sent;
-              dispatch(Object(_actions_files_filesActions__WEBPACK_IMPORTED_MODULE_2__["setCurrentBook"])(response.content, response.meta.name, id));
+              dispatch(Object(_actions_files_filesActions__WEBPACK_IMPORTED_MODULE_2__["setCurrentBook"])(response, 'response.meta.name', id));
               return _context5.abrupt("return", response.content);
 
             case 9:
@@ -77850,8 +77684,8 @@ var signUp = function signUp(password) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! B:\OpenServer\domains\lookboook\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! B:\OpenServer\domains\lookboook\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! B:\OpenServer\domains\lookbook\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! B:\OpenServer\domains\lookbook\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

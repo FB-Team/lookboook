@@ -35,7 +35,7 @@ export const filesAPI = {
     async getBook(id) {
         const response = await filesAxios.get('/book', {
             params: {
-                id
+                'id' :id
             }
         })
         if (response) return response.data

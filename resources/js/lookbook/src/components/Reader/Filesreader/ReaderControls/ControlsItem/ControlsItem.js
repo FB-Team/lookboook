@@ -36,7 +36,7 @@ const ControlsItem = (props) => {
     const propName = props.property
     const styleToSend = {styles: {}}
     styleToSend.styles[propName] = e.target.value
-    dispatch (updateStyles (login, styleToSend))
+    dispatch (updateStyles (styleToSend))
   }
 
   // ЕСЛИ ДАННЫЕ НЕ ПРИШЛИ, ТО И РЕНДЕРИТЬ НИЧЕГО НЕ НУЖНО

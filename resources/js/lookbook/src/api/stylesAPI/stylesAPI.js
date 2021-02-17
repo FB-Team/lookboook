@@ -1,7 +1,7 @@
 import * as axios from 'axios'
 
 const stylesAxios = axios.create({
-      baseURL: 'http://lookbook:8000/api/stylesApi'
+      baseURL: 'http://lookbook/api/stylesApi'
 })
 export const stylesAPI = {
   async getStyles () {

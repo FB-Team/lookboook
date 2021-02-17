@@ -51,7 +51,7 @@ export const getBook = ( id) => async (dispatch) => {
   try {
     dispatch (clearCurrentBook())
     let response = await filesAPI.getBook (id)
-    dispatch(setCurrentBook(response.content, response.meta.name, id))
+    dispatch(setCurrentBook(response, 'response.meta.name', id))
     return response.content
   } catch (e) {
     alert ('Cannot load a book! Message = ' + e)
@@ -72,10 +72,10 @@ export const getStyles = () => async (dispatch) => {
     return null
   }
 }
-export const updateStyles = ( styles) => async (dispatch) => {
+export const updateStyles = (styles) => async (dispatch) => {
   try{
     if (!(styles instanceof Object)) { throw new Error ('updateStyles (thunk): is not an object!') }
-    let response =  await stylesAPI.updateStyles ( styles)
+    let response =  await stylesAPI.updateStyles (styles)
     dispatch (setStyles(response.styles))
     return response.styles
   } catch (e) {

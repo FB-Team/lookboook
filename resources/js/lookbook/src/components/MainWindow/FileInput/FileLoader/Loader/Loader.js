@@ -28,6 +28,7 @@ const Loader= (props) => {
   return (
     <div className={s.Loader}>
       <div>
+      {<input className={s.selectedFiles} ref={fileInput}type="file" onChange={handleSelection} className={s.input} name="file"  multiple></input>}
         <input className={s.urlLoader + ' ' + 'form-control'} onChange={handleChange} type="text" placeholder="Загрузить файл по ссылке"/>
         <div className={s.filesystemSave}>
           <div className="col-8 mx-auto">

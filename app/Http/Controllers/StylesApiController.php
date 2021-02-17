@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\CustomSettings;
+use App\User;
+use Error;
+use PDO;
+const DEFAULT_USER_ID = 1;
 class StylesApiController extends Controller
 {
     /**
@@ -42,12 +46,12 @@ class StylesApiController extends Controller
     {
         //
     }
-
     /**
-     * Display the specified resource.
+    * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+
      */
     public function show($id)
     {
@@ -72,9 +76,24 @@ class StylesApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $user = $this->getCurrentUserIfAvailable();
+        $modified_data = false;
+        if(isset($user->settings)){
+            $modified_data = $user->settings->update([
+                'styles' => $request['styles']
+            ]);
+        }else{
+            $modified_data = $user->settings()->create([
+                'styles' => $request['styles']
+            ]);
+        }
+        if($modified_data){
+            return $user->settings->styles;
+        }else{
+            throw new Error('Cannot update users styles');
+        }
     }
 
     /**
@@ -86,5 +105,19 @@ class StylesApiController extends Controller
     public function destroy($id)
     {
         //
+    }
+    /** 
+    *
+    *   @return ВОЗВРАЩАЕТ ТЕКУЩЕГО ЗАРЕГЕСТРИРОВАННОГО ПОЛЬЗОВАТЕЛЯ, ЛИБО ПОЛЬЗОВАТЕЛЯ ПО УМОЛЧАНИЮ
+    */
+    public function getCurrentUserIfAvailable(): App\User{
+        if (Auth::user()){
+            $user = User::find(Auth::user()->id);
+        }
+        else{
+            $user = User::find(DEFAULT_USER_ID);
+        }
+
+        return $user;
     }
 }
