@@ -66,6 +66,7 @@ export const getStyles = () => async (dispatch) => {
     }
     dispatch (setStyles(styles))
     return styles
+    
   } catch (e){
     console.log("Network error occured  = " + e)
     // alert ("Network error occured  = " + e);
