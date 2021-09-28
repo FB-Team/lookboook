@@ -16,7 +16,7 @@ export const getAllLibs = () => async (dispatch) => {
     let response = await filesAPI.getLibs()
     dispatch (setLibs (response.libs))
   } catch (e) {
-    alert ('Cannot load the libs! Message = ' + e)
+    console.log ('Cannot load the libs! Message = ' + e)
   }
 }
 
@@ -27,7 +27,7 @@ export const putBooks = ( books) => async (dispatch) => {
     dispatch(setLibs(response.libsTree))
     dispatch(clearSelectedAll())
   } catch (e) {
-    alert ('Cannot put books to the server! Message = ' + e)
+    console.log ('Cannot put books to the server! Message = ' + e)
   }
 }
 export const putBookByUrl = ( book) => async (dispatch) => {
@@ -37,14 +37,14 @@ export const putBookByUrl = ( book) => async (dispatch) => {
     dispatch(setLibs(response.libsTree))
     dispatch(clearSelectedAll())
   } catch (e) {
-    alert ('Cannot add book by URL! Message = ' + e)
+    console.log ('Cannot add book by URL! Message = ' + e)
   }
 }
 export const putLibs = (libs, books) => async (dispatch) => {
   try {
     let response = await filesAPI.putLibs ({libs, books})
   } catch (e) {
-    alert ('Cannot put the libs! Message = ' + e)
+    console.log ('Cannot put the libs! Message = ' + e)
   }
 }
 export const getBook = ( id) => async (dispatch) => {
@@ -54,33 +54,27 @@ export const getBook = ( id) => async (dispatch) => {
     dispatch(setCurrentBook(response, 'response.meta.name', id))
     return response.content
   } catch (e) {
-    alert ('Cannot load a book! Message = ' + e)
+    console.log ('Cannot load a book! Message = ' + e)
   }
 }
 export const getStyles = () => async (dispatch) => {
   try {
-    let response =  await stylesAPI.getStyles ()
-    let styles = response.styles
-    if (typeof styles == 'string') {
-      styles = JSON.parse (styles)
-    }
+    let styles = await stylesAPI.getStyles ()
     dispatch (setStyles(styles))
     return styles
-    
   } catch (e){
     console.log("Network error occured  = " + e)
-    // alert ("Network error occured  = " + e);
+    // console.log ("Network error occured  = " + e);
     return null
   }
 }
-export const updateStyles = (styles) => async (dispatch) => {
+export const updateStyles = (stylesData) => async (dispatch) => {
   try{
-    if (!(styles instanceof Object)) { throw new Error ('updateStyles (thunk): is not an object!') }
-    let response =  await stylesAPI.updateStyles (styles)
-    dispatch (setStyles(response.styles))
-    return response.styles
+    let styles =  await stylesAPI.updateStyles (stylesData)
+    dispatch (setStyles(styles))
+    return styles
   } catch (e) {
-    alert ('Network error occured = ' + e)
+    console.log ('Network error occured = ' + e)
     return null
   }
 }
@@ -89,24 +83,7 @@ export const deleteBook = ( id) => async (dispatch) => {
     let response = await filesAPI.deleteBook ( Number(id))
     dispatch (dispatch(setLibs(response.libsTree)))
   } catch (e) {
-    alert ("Cannot delete the book: Server error! Message = " + e)
+    console.log ("Cannot delete the book: Server error! Message = " + e)
     return null
-  }
-}
-export const signIn = ( password) => async (dispatch) => {
-  try {
-    let response = await accountsAPI.signIn ( password)
-    dispatch (dispatch(setCredentials(response. response.password)))
-  }catch (e) {
-    alert ('Cannot perform a sign in!');
-    return null
-  }
-}
-export const signUp = ( password) => async (dispatch) => {
-  try {
-    let response = await accountsAPI.signUp ( password)
-    dispatch (dispatch(setCredentials(response. response.password)))
-  }catch (e) {
-    alert ('Cannot perform a sign up')
   }
 }

@@ -6,6 +6,7 @@ import {
   DEFAULT_BOOK_NAME,
   DEFAULT_BOOK_PLACEHOLDER,
 } from '../../../redux/reducers/files/filesReducer';
+
 import { getBook, getStyles } from '../../../redux/thunks/thunks';
 import Preloader from './Preloader/Preloader';
 import ReaderControls from './ReaderControls/ReaderControls';
@@ -26,12 +27,12 @@ const Reader = (props) => {
   const styles = useSelector (state => state.styles.styles)
   const book = useSelector (state => state.files.currentBook)
   const bookId = useSelector (state => state.files.currentBookId)
-  const login = useSelector (state => state.accounts.login)
+  const userId = useSelector (state => state.files.userId)
   useEffect (() => {
     dispatch (getStyles ())
     if (book === DEFAULT_BOOK_PLACEHOLDER && bookId !== DEFAULT_BOOK_NAME) {
       console.log('book id = ' + bookId)
-      dispatch (getBook (bookId))
+      //dispatch (getBook (bookId))
     }
   },
   [props])

@@ -18,12 +18,9 @@ class StylesApiController extends Controller
      */
     public function index()
     {
-        if (!Auth::id()){
-            $styles = CustomSettings::where('user_id', 1)->get()->first()->styles;
-            return $styles;
-        }
-        $styles = CustomSettings::where('user_id', Auth::id())->get()->first()->styles;
-        return $styles;
+        $user = Auth::user() ?? User::find(1);
+
+        return $user->settings['styles'] ?? [];
     }
 
     /**
@@ -81,16 +78,21 @@ class StylesApiController extends Controller
         $user = $this->getCurrentUserIfAvailable();
         $modified_data = false;
         if(isset($user->settings)){
-            $modified_data = $user->settings->update([
-                'styles' => $request['styles']
+            $modified_data = $user->settings()->update([
+                'styles' => $request['styles'],
+                'user_type' => 'plain',
+                'custom_settings' => '{}'
             ]);
         }else{
             $modified_data = $user->settings()->create([
-                'styles' => $request['styles']
+                'styles' => json_encode($request['styles']),
+                'user_type' => 'plain',
+                'custom_settings' => '{}'
+
             ]);
         }
         if($modified_data){
-            return $user->settings->styles;
+            return $user->settings['styles'];
         }else{
             throw new Error('Cannot update users styles');
         }
@@ -106,18 +108,11 @@ class StylesApiController extends Controller
     {
         //
     }
-    /** 
+    /**
     *
-    *   @return ВОЗВРАЩАЕТ ТЕКУЩЕГО ЗАРЕГЕСТРИРОВАННОГО ПОЛЬЗОВАТЕЛЯ, ЛИБО ПОЛЬЗОВАТЕЛЯ ПО УМОЛЧАНИЮ
+    *   @return User ТЕКУЩЕГО ЗАРЕГЕСТРИРОВАННОГО ПОЛЬЗОВАТЕЛЯ, ЛИБО ПОЛЬЗОВАТЕЛЯ ПО УМОЛЧАНИЮ
     */
-    public function getCurrentUserIfAvailable(): App\User{
-        if (Auth::user()){
-            $user = User::find(Auth::user()->id);
-        }
-        else{
-            $user = User::find(DEFAULT_USER_ID);
-        }
-
-        return $user;
+    public function getCurrentUserIfAvailable():? User{
+        return User::find(!empty(Auth::user()) ? Auth::user()->id : DEFAULT_USER_ID);
     }
 }

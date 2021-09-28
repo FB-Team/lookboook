@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,11 @@ Route::get('/reader', function () {
 Route::group(['prefix' => 'api'], function(){
     Route::group(['prefix' => 'filesApi'], function (){
         Route::resource('book', 'FilesApiController');
+        Route::get('/userID', 'FilesApiController@getCurrentUserID');
     });
     Route::group(['prefix' => 'stylesApi'], function(){
         Route::resource('', 'StylesApiController');
+        Route::patch('/update', 'StylesApiController@update');
     });
 });
 

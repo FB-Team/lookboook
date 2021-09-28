@@ -75416,23 +75416,26 @@ var stylesAPI = {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _context2.next = 2;
-              return stylesAxios.put(styles);
+              console.log(styles);
+              _context2.next = 3;
+              return stylesAxios.patch("/update", {
+                styles: styles
+              });
 
-            case 2:
+            case 3:
               response = _context2.sent;
 
-              if (!response.data.styles) {
-                _context2.next = 7;
+              if (!response.data) {
+                _context2.next = 8;
                 break;
               }
 
               return _context2.abrupt("return", response.data);
 
-            case 7:
+            case 8:
               throw new Error('Cannot update styles through the stylesAPI!');
 
-            case 8:
+            case 9:
             case "end":
               return _context2.stop();
           }
@@ -75524,6 +75527,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var FileInput = function FileInput(props) {
+  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
   var authPath = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
     return state.accounts.authPath;
   });
@@ -76293,15 +76297,14 @@ var Reader = function Reader(props) {
   var bookId = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
     return state.files.currentBookId;
   });
-  var login = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
-    return state.accounts.login;
+  var userId = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
+    return state.files.userId;
   });
   Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () {
     dispatch(Object(_redux_thunks_thunks__WEBPACK_IMPORTED_MODULE_5__["getStyles"])());
 
     if (book === _redux_reducers_files_filesReducer__WEBPACK_IMPORTED_MODULE_4__["DEFAULT_BOOK_PLACEHOLDER"] && bookId !== _redux_reducers_files_filesReducer__WEBPACK_IMPORTED_MODULE_4__["DEFAULT_BOOK_NAME"]) {
-      console.log('book id = ' + bookId);
-      dispatch(Object(_redux_thunks_thunks__WEBPACK_IMPORTED_MODULE_5__["getBook"])(bookId));
+      console.log('book id = ' + bookId); //dispatch (getBook (bookId))
     }
   }, [props]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Route"], {
@@ -76450,35 +76453,35 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-var ControlsItem = function ControlsItem(props) {
+/* harmony default export */ __webpack_exports__["default"] = (function (props) {
   // ИНФА О ВЫБОРКЕ ОПЦИОНАЛЬНЫХ СТИЛЕЙ
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["useDispatch"])();
+  var userId = Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["useSelector"])(function (state) {
+    return state.files.userId;
+  });
+  var defaultValue = props.property;
+  var defaultName = props.name;
+  var defaultTitle = props.title;
+  var values = Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["useSelector"])(function (state) {
+    return state.styles.values;
+  });
   var styles = Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["useSelector"])(function (state) {
     return state.styles.styles;
-  });
-  var values = Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["useSelector"])(function (state) {
-    return state.styles.values[props.property];
-  });
-  var login = Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["useSelector"])(function (state) {
-    return state.accounts.login;
-  });
-  var defaultValue = styles[props.property]; // ПРОВЕРКИ, ЧТО БЫ УБЕДИТЬСЯ ЧТО -
+  }); // ПРОВЕРКИ, ЧТО БЫ УБЕДИТЬСЯ ЧТО -
   // А) МЫ ПОЛУЧИЛИ ДЕЙСТВИТЕЛЬНЫЕ ДАННЫЕ
   // Б) ДЕФОЛТНОЕ ЗНАЧЕНИЕ ВХОДИТ В МАССИВ ОПЦИОНАЛЬНЫХ ЗНАЧЕНИЙ
 
-  if (!values || !defaultValue || !login) {
+  if (!values || !defaultValue) {
     throw new Error("ControlsItem: Invalid values provided!");
   }
 
-  if (!values.includes(defaultValue)) {
-    alert("ControlsItem: Warning, the defualt values provided does not belong to styles selection!");
-    dispatch(Object(_redux_actions_content_stylesActions__WEBPACK_IMPORTED_MODULE_2__["addSelectedStyle"])(props.property, defaultValue));
+  if (!values[defaultName].includes(defaultValue)) {
+    alert("ControlsItem: Warning, the default values provided does not belong to styles selection!");
+    dispatch(Object(_redux_actions_content_stylesActions__WEBPACK_IMPORTED_MODULE_2__["addSelectedStyle"])(defaultName, defaultValue));
   } // СОЗДАЕМ МАССИВ СОСТОЯЩИЙ ИЗ НАБОРА ПАРАМЕТРОВБ КОТОРЫЕ ПОЛЬЗОВАТЕЛЬ СМОЖЕТ ПРИМЕНЯТЬ К СТИЛЯМ ГЛАВНОГО ОКНА
 
 
-  var options = null;
-  options = values.map(function (value, i) {
+  var options = values[defaultName].map(function (value, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
       key: i,
       value: value
@@ -76486,27 +76489,21 @@ var ControlsItem = function ControlsItem(props) {
   });
 
   function handleChange(e) {
-    var propName = props.property;
-    var styleToSend = {
-      styles: {}
-    };
-    styleToSend.styles[propName] = e.target.value;
-    dispatch(Object(_redux_thunks_thunks__WEBPACK_IMPORTED_MODULE_3__["updateStyles"])(styleToSend));
-  } // ЕСЛИ ДАННЫЕ НЕ ПРИШЛИ, ТО И РЕНДЕРИТЬ НИЧЕГО НЕ НУЖНО
-
+    styles[defaultName] = e.target.value;
+    console.log(styles);
+    dispatch(Object(_redux_thunks_thunks__WEBPACK_IMPORTED_MODULE_3__["updateStyles"])(styles));
+  }
 
   if (options) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
       htmlFor: props.name
-    }, props.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+    }, defaultTitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
       name: props.name,
-      defaultValue: defaultValue,
+      value: defaultValue,
       onChange: handleChange
     }, options));
   } else return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null);
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (ControlsItem);
+});
 
 /***/ }),
 
@@ -76521,34 +76518,49 @@ var ControlsItem = function ControlsItem(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Back_Back__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Back/Back */ "./resources/js/lookbook/src/components/Reader/Filesreader/ReaderControls/Back/Back.js");
-/* harmony import */ var _ControlsItem_ControlsItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ControlsItem/ControlsItem */ "./resources/js/lookbook/src/components/Reader/Filesreader/ReaderControls/ControlsItem/ControlsItem.js");
-/* harmony import */ var _ReaderControls_module_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ReaderControls.module.css */ "./resources/js/lookbook/src/components/Reader/Filesreader/ReaderControls/ReaderControls.module.css");
-/* harmony import */ var _ReaderControls_module_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_ReaderControls_module_css__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _Back_Back__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Back/Back */ "./resources/js/lookbook/src/components/Reader/Filesreader/ReaderControls/Back/Back.js");
+/* harmony import */ var _ControlsItem_ControlsItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ControlsItem/ControlsItem */ "./resources/js/lookbook/src/components/Reader/Filesreader/ReaderControls/ControlsItem/ControlsItem.js");
+/* harmony import */ var _ReaderControls_module_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ReaderControls.module.css */ "./resources/js/lookbook/src/components/Reader/Filesreader/ReaderControls/ReaderControls.module.css");
+/* harmony import */ var _ReaderControls_module_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_ReaderControls_module_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _redux_thunks_thunks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../redux/thunks/thunks */ "./resources/js/lookbook/src/redux/thunks/thunks.js");
+
+
 
 
 
 
 
 var ReaderControls = function ReaderControls(props) {
+  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
+  var styles = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
+    return state.styles.styles;
+  });
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    dispatch(Object(_redux_thunks_thunks__WEBPACK_IMPORTED_MODULE_5__["getStyles"])());
+  }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: _ReaderControls_module_css__WEBPACK_IMPORTED_MODULE_3___default.a.ReaderControls
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Back_Back__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: _ReaderControls_module_css__WEBPACK_IMPORTED_MODULE_4___default.a.ReaderControls
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Back_Back__WEBPACK_IMPORTED_MODULE_2__["default"], {
     path: "/"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: _ReaderControls_module_css__WEBPACK_IMPORTED_MODULE_3___default.a.controlsWrapper
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ControlsItem_ControlsItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    name: "\u0428\u0440\u0438\u0444\u0442\u044B",
-    property: 'font-size'
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ControlsItem_ControlsItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    name: "\u0418\u043D\u0442\u0435\u0440\u0432\u0430\u043B",
-    property: 'line-height'
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ControlsItem_ControlsItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    name: "\u0426\u0432\u0435\u0442",
-    property: 'color'
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ControlsItem_ControlsItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    name: "\u0426\u0432\u0435\u0442 \u0444\u043E\u043D\u0430",
-    property: 'background-color'
+    className: _ReaderControls_module_css__WEBPACK_IMPORTED_MODULE_4___default.a.controlsWrapper
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ControlsItem_ControlsItem__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "font-size",
+    title: "\u0428\u0440\u0438\u0444\u0442\u044B",
+    property: styles['font-size']
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ControlsItem_ControlsItem__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "line-height",
+    title: "\u0418\u043D\u0442\u0435\u0440\u0432\u0430\u043B",
+    property: styles['line-height']
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ControlsItem_ControlsItem__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "color",
+    title: "\u0426\u0432\u0435\u0442",
+    property: styles['color']
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ControlsItem_ControlsItem__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "background-color",
+    title: "\u0426\u0432\u0435\u0442 \u0444\u043E\u043D\u0430",
+    property: styles['background-color']
   })));
 };
 
@@ -76694,7 +76706,7 @@ var addSelectedStyle = function addSelectedStyle(styleName, value) {
 /*!***********************************************************************!*\
   !*** ./resources/js/lookbook/src/redux/actions/files/filesActions.js ***!
   \***********************************************************************/
-/*! exports provided: SETLIBS, PUTBOOK, PUTLIB, CREATELIB, ADD_BOOK_TO_LIB, SET_CURRENT_BOOK, SET_BOOKS_AND_LIBS, SET_BOOK_FLAG, CLEAR_CURRENT_BOOK, clearCurrentBook, setBookFlag, setLibs, createBook, createLib, addBookToLib, setCurrentBook */
+/*! exports provided: SETLIBS, PUTBOOK, PUTLIB, CREATELIB, ADD_BOOK_TO_LIB, SET_CURRENT_BOOK, SET_BOOKS_AND_LIBS, SET_BOOK_FLAG, CLEAR_CURRENT_BOOK, SET_USER_ID, clearCurrentBook, setBookFlag, setLibs, createBook, createLib, addBookToLib, setCurrentBook, setUserId */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -76708,6 +76720,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_BOOKS_AND_LIBS", function() { return SET_BOOKS_AND_LIBS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_BOOK_FLAG", function() { return SET_BOOK_FLAG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_CURRENT_BOOK", function() { return CLEAR_CURRENT_BOOK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_USER_ID", function() { return SET_USER_ID; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearCurrentBook", function() { return clearCurrentBook; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setBookFlag", function() { return setBookFlag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setLibs", function() { return setLibs; });
@@ -76715,6 +76728,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createLib", function() { return createLib; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addBookToLib", function() { return addBookToLib; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setCurrentBook", function() { return setCurrentBook; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setUserId", function() { return setUserId; });
 var SETLIBS = 'SETLIBS';
 var PUTBOOK = 'PUTBOOK';
 var PUTLIB = 'PUTLIB';
@@ -76724,6 +76738,7 @@ var SET_CURRENT_BOOK = 'SET_CURRENT_BOOK';
 var SET_BOOKS_AND_LIBS = 'SET_BOOKS_AND_LIBS';
 var SET_BOOK_FLAG = 'SET_BOOK_FLAG';
 var CLEAR_CURRENT_BOOK = 'CLEAR_CURRENT_BOOK';
+var SET_USER_ID = 'SET_USER_ID';
 var clearCurrentBook = function clearCurrentBook() {
   return {
     type: CLEAR_CURRENT_BOOK
@@ -76768,6 +76783,12 @@ var setCurrentBook = function setCurrentBook(bookContent, bookName, id) {
     type: SET_CURRENT_BOOK,
     book: bookContent,
     bookName: bookName,
+    id: id
+  };
+};
+var setUserId = function setUserId(id) {
+  return {
+    type: SET_USER_ID,
     id: id
   };
 };
@@ -76959,10 +76980,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var initialState = {
   styles: {
-    "font-size": "18px",
-    "line-height": "18px",
-    "color": "black",
-    "background-color": "white"
+    'font-size': '18px',
+    'line-height': '18px',
+    'color': 'black',
+    'background-color': 'white'
   },
   values: {
     "font-size": ["12px", "14px", "16px", "18px", "20px", "22px", "24px", "26px"],
@@ -77048,7 +77069,8 @@ var initialState = {
   currentBook: DEFAULT_BOOK_PLACEHOLDER,
   currentBookName: bookName,
   currentBookId: null,
-  bookIsLoaded: false
+  bookIsLoaded: false,
+  userId: 1
 };
 
 var filesReducer = function filesReducer() {
@@ -77101,6 +77123,11 @@ var filesReducer = function filesReducer() {
       return _objectSpread(_objectSpread({}, state), {}, {
         currentBook: DEFAULT_BOOK_PLACEHOLDER,
         bookIsLoaded: false
+      });
+
+    case _actions_files_filesActions__WEBPACK_IMPORTED_MODULE_0__["SET_USER_ID"]:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        userId: action.id
       });
 
     default:
@@ -77242,7 +77269,7 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
 /*!**********************************************************!*\
   !*** ./resources/js/lookbook/src/redux/thunks/thunks.js ***!
   \**********************************************************/
-/*! exports provided: getAllLibs, putBooks, putBookByUrl, putLibs, getBook, getStyles, updateStyles, deleteBook, signIn, signUp */
+/*! exports provided: getAllLibs, putBooks, putBookByUrl, putLibs, getBook, getStyles, updateStyles, deleteBook */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -77255,8 +77282,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getStyles", function() { return getStyles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateStyles", function() { return updateStyles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteBook", function() { return deleteBook; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signIn", function() { return signIn; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signUp", function() { return signUp; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _api_accountsAPI_accountsAPI__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../api/accountsAPI/accountsAPI */ "./resources/js/lookbook/src/api/accountsAPI/accountsAPI.js");
@@ -77300,7 +77325,7 @@ var getAllLibs = function getAllLibs() {
             case 7:
               _context.prev = 7;
               _context.t0 = _context["catch"](0);
-              alert('Cannot load the libs! Message = ' + _context.t0);
+              console.log('Cannot load the libs! Message = ' + _context.t0);
 
             case 10:
             case "end":
@@ -77338,7 +77363,7 @@ var putBooks = function putBooks(books) {
             case 9:
               _context2.prev = 9;
               _context2.t0 = _context2["catch"](0);
-              alert('Cannot put books to the server! Message = ' + _context2.t0);
+              console.log('Cannot put books to the server! Message = ' + _context2.t0);
 
             case 12:
             case "end":
@@ -77376,7 +77401,7 @@ var putBookByUrl = function putBookByUrl(book) {
             case 9:
               _context3.prev = 9;
               _context3.t0 = _context3["catch"](0);
-              alert('Cannot add book by URL! Message = ' + _context3.t0);
+              console.log('Cannot add book by URL! Message = ' + _context3.t0);
 
             case 12:
             case "end":
@@ -77414,7 +77439,7 @@ var putLibs = function putLibs(libs, books) {
             case 6:
               _context4.prev = 6;
               _context4.t0 = _context4["catch"](0);
-              alert('Cannot put the libs! Message = ' + _context4.t0);
+              console.log('Cannot put the libs! Message = ' + _context4.t0);
 
             case 9:
             case "end":
@@ -77450,7 +77475,7 @@ var getBook = function getBook(id) {
             case 9:
               _context5.prev = 9;
               _context5.t0 = _context5["catch"](0);
-              alert('Cannot load a book! Message = ' + _context5.t0);
+              console.log('Cannot load a book! Message = ' + _context5.t0);
 
             case 12:
             case "end":
@@ -77468,7 +77493,7 @@ var getBook = function getBook(id) {
 var getStyles = function getStyles() {
   return /*#__PURE__*/function () {
     var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(dispatch) {
-      var response, styles;
+      var styles;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
         while (1) {
           switch (_context6.prev = _context6.next) {
@@ -77478,29 +77503,23 @@ var getStyles = function getStyles() {
               return _api_stylesAPI_stylesAPI__WEBPACK_IMPORTED_MODULE_7__["stylesAPI"].getStyles();
 
             case 3:
-              response = _context6.sent;
-              styles = response.styles;
-
-              if (typeof styles == 'string') {
-                styles = JSON.parse(styles);
-              }
-
+              styles = _context6.sent;
               dispatch(Object(_actions_content_stylesActions__WEBPACK_IMPORTED_MODULE_6__["setStyles"])(styles));
               return _context6.abrupt("return", styles);
 
-            case 10:
-              _context6.prev = 10;
+            case 8:
+              _context6.prev = 8;
               _context6.t0 = _context6["catch"](0);
-              console.log("Network error occured  = " + _context6.t0); // alert ("Network error occured  = " + e);
+              console.log("Network error occured  = " + _context6.t0); // console.log ("Network error occured  = " + e);
 
               return _context6.abrupt("return", null);
 
-            case 14:
+            case 12:
             case "end":
               return _context6.stop();
           }
         }
-      }, _callee6, null, [[0, 10]]);
+      }, _callee6, null, [[0, 8]]);
     }));
 
     return function (_x6) {
@@ -77508,44 +77527,35 @@ var getStyles = function getStyles() {
     };
   }();
 };
-var updateStyles = function updateStyles(styles) {
+var updateStyles = function updateStyles(stylesData) {
   return /*#__PURE__*/function () {
     var _ref7 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(dispatch) {
-      var response;
+      var styles;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
         while (1) {
           switch (_context7.prev = _context7.next) {
             case 0:
               _context7.prev = 0;
-
-              if (styles instanceof Object) {
-                _context7.next = 3;
-                break;
-              }
-
-              throw new Error('updateStyles (thunk): is not an object!');
+              _context7.next = 3;
+              return _api_stylesAPI_stylesAPI__WEBPACK_IMPORTED_MODULE_7__["stylesAPI"].updateStyles(stylesData);
 
             case 3:
-              _context7.next = 5;
-              return _api_stylesAPI_stylesAPI__WEBPACK_IMPORTED_MODULE_7__["stylesAPI"].updateStyles(styles);
+              styles = _context7.sent;
+              dispatch(Object(_actions_content_stylesActions__WEBPACK_IMPORTED_MODULE_6__["setStyles"])(styles));
+              return _context7.abrupt("return", styles);
 
-            case 5:
-              response = _context7.sent;
-              dispatch(Object(_actions_content_stylesActions__WEBPACK_IMPORTED_MODULE_6__["setStyles"])(response.styles));
-              return _context7.abrupt("return", response.styles);
-
-            case 10:
-              _context7.prev = 10;
+            case 8:
+              _context7.prev = 8;
               _context7.t0 = _context7["catch"](0);
-              alert('Network error occured = ' + _context7.t0);
+              console.log('Network error occured = ' + _context7.t0);
               return _context7.abrupt("return", null);
 
-            case 14:
+            case 12:
             case "end":
               return _context7.stop();
           }
         }
-      }, _callee7, null, [[0, 10]]);
+      }, _callee7, null, [[0, 8]]);
     }));
 
     return function (_x7) {
@@ -77574,7 +77584,7 @@ var deleteBook = function deleteBook(id) {
             case 7:
               _context8.prev = 7;
               _context8.t0 = _context8["catch"](0);
-              alert("Cannot delete the book: Server error! Message = " + _context8.t0);
+              console.log("Cannot delete the book: Server error! Message = " + _context8.t0);
               return _context8.abrupt("return", null);
 
             case 11:
@@ -77587,79 +77597,6 @@ var deleteBook = function deleteBook(id) {
 
     return function (_x8) {
       return _ref8.apply(this, arguments);
-    };
-  }();
-};
-var signIn = function signIn(password) {
-  return /*#__PURE__*/function () {
-    var _ref9 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9(dispatch) {
-      var response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
-        while (1) {
-          switch (_context9.prev = _context9.next) {
-            case 0:
-              _context9.prev = 0;
-              _context9.next = 3;
-              return _api_accountsAPI_accountsAPI__WEBPACK_IMPORTED_MODULE_1__["accountsAPI"].signIn(password);
-
-            case 3:
-              response = _context9.sent;
-              dispatch(dispatch(Object(_actions_accounts_accountActions__WEBPACK_IMPORTED_MODULE_5__["setCredentials"])(response.response.password)));
-              _context9.next = 11;
-              break;
-
-            case 7:
-              _context9.prev = 7;
-              _context9.t0 = _context9["catch"](0);
-              alert('Cannot perform a sign in!');
-              return _context9.abrupt("return", null);
-
-            case 11:
-            case "end":
-              return _context9.stop();
-          }
-        }
-      }, _callee9, null, [[0, 7]]);
-    }));
-
-    return function (_x9) {
-      return _ref9.apply(this, arguments);
-    };
-  }();
-};
-var signUp = function signUp(password) {
-  return /*#__PURE__*/function () {
-    var _ref10 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10(dispatch) {
-      var response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
-        while (1) {
-          switch (_context10.prev = _context10.next) {
-            case 0:
-              _context10.prev = 0;
-              _context10.next = 3;
-              return _api_accountsAPI_accountsAPI__WEBPACK_IMPORTED_MODULE_1__["accountsAPI"].signUp(password);
-
-            case 3:
-              response = _context10.sent;
-              dispatch(dispatch(Object(_actions_accounts_accountActions__WEBPACK_IMPORTED_MODULE_5__["setCredentials"])(response.response.password)));
-              _context10.next = 10;
-              break;
-
-            case 7:
-              _context10.prev = 7;
-              _context10.t0 = _context10["catch"](0);
-              alert('Cannot perform a sign up');
-
-            case 10:
-            case "end":
-              return _context10.stop();
-          }
-        }
-      }, _callee10, null, [[0, 7]]);
-    }));
-
-    return function (_x10) {
-      return _ref10.apply(this, arguments);
     };
   }();
 };

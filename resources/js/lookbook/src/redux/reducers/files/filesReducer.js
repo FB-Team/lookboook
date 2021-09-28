@@ -5,6 +5,7 @@ import {
   SET_BOOKS_AND_LIBS,
   SET_BOOK_FLAG,
   SET_CURRENT_BOOK,
+  SET_USER_ID
 } from '../../actions/files/filesActions';
 
 const defaultLib = null
@@ -17,7 +18,8 @@ const initialState = {
   currentBook:     DEFAULT_BOOK_PLACEHOLDER,
   currentBookName: bookName,
   currentBookId: null,
-  bookIsLoaded: false
+  bookIsLoaded: false,
+  userId: 1
 }
 const filesReducer = (state = initialState, action) => {
   switch (action.type){
@@ -50,6 +52,8 @@ const filesReducer = (state = initialState, action) => {
 
     case CLEAR_CURRENT_BOOK:
     return {...state, currentBook: DEFAULT_BOOK_PLACEHOLDER, bookIsLoaded: false}
+    case SET_USER_ID: 
+    return {...state, userId: action.id}
     default: return state
   }
 }

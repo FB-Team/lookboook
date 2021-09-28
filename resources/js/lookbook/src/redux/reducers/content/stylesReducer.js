@@ -5,10 +5,10 @@ import {
 
 const initialState = {
   styles: {
-   "font-size": "18px",
-   "line-height": "18px",
-   "color":"black",
-   "background-color": "white"
+   'font-size': '18px',
+   'line-height': '18px',
+   'color':'black',
+   'background-color': 'white'
  },
  values: {
    "font-size":        ["12px","14px","16px","18px","20px","22px", "24px", "26px"],

@@ -13,8 +13,9 @@ export const stylesAPI = {
    }
  },
  async updateStyles (styles) {
-   const response = await stylesAxios.put(styles);
-   if (response.data.styles)
+     console.log(styles);
+     const response = await stylesAxios.patch(`/update`, {styles});
+   if (response.data)
    return response.data
    else {
      throw new Error ('Cannot update styles through the stylesAPI!');

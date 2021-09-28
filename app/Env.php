@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Env extends Model
 {
-    protected $connection = 'env'; 
+    protected $table = 'env'; 
     protected $fillable = ['libs_path'];
 }

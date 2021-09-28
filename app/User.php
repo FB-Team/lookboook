@@ -42,6 +42,6 @@ class User extends Authenticatable
         return $this->hasOne('App\RootLib', 'user_id');
     }
     public function settings(){
-        return $this->hasOne('App\CustomSettings');
+        return $this->hasOne('App\CustomSettings', 'user_id');
     }
 }

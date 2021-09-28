@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class CustomSettings extends Model
 {
-    protected $connection = 'settings'; 
-    protected $fillable = ['styles', 'custom_settings'];
+    protected $table = 'settings'; 
+    protected $fillable = ['styles', 'custom_settings', 'user_type'];
     public function user(){
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User','user_id');
     }
 }

@@ -142,4 +142,7 @@ class FilesApiController extends Controller
 
         return $result;
     }
+    public function getCurrentUserID(){
+        return Auth::user()->id ?? 1;
+    }
 }
