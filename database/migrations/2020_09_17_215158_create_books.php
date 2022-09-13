@@ -20,6 +20,7 @@ class CreateBooks extends Migration
             $table->text('extension');
             $table->text('path');
             $table->text('size');
+            $table->integer('lib_id');
         });
     }
 

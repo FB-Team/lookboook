@@ -75110,8 +75110,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 var filesAxios = axios__WEBPACK_IMPORTED_MODULE_1__["create"]({
-  baseURL: 'http://lookbook/api/filesApi/book',
-  port: 8000
+  baseURL: 'http://lookboook/api/filesApi/book',
+  port: 80
 });
 var filesAPI = {
   getLibs: function getLibs() {
@@ -77621,8 +77621,8 @@ var deleteBook = function deleteBook(id) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! B:\OpenServer\domains\lookbook\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! B:\OpenServer\domains\lookbook\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Software\OpenServer\domains\lookboook\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Software\OpenServer\domains\lookboook\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
