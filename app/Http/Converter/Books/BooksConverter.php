@@ -13,8 +13,12 @@ abstract class BooksConverter implements Converter
     function __construct(Book $book)
     {
         $this->book = $book;
-        $this->file = file_get_contents('storage/' . $book->path, 'r');
     }
 
-    abstract function getPage(int $page): Page;
+    function save($content) {
+        if (!session('currentBook'))
+            session(['currentBook' => $content]);
+
+        return session('currentBook');
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Converter\Books;
 
 use App\Book;
 use App\Http\Converter\Books\Components\Page;
+use Illuminate\Support\Facades\Storage;
 
 class TXTConverter extends BooksConverter
 {
@@ -12,19 +13,10 @@ class TXTConverter extends BooksConverter
         parent::__construct($book);
     }
 
-    function getPage(int $page): Page
-    {
-        return new Page();
-    }
-
     function convert()
     {
+        $this->file = file_get_contents('storage/' . $this->book->path, 'r');
+        Storage::disk('local')->put('example.txt', $this->file);
         return $this->save($this->file);
-    }
-    function save($content) {
-        if (!session('currentBook'))
-            session(['currentBook' => $content]);
-
-        return session('currentBook');
     }
 }

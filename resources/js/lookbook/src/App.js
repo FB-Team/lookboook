@@ -8,18 +8,16 @@ import s from './App.module.css';
 import store from './redux/indexRedux'
 
 const App = (props) => {
-    return ( 
+    return (
     <div className={s.App}>
         <Provider store = {store}>
             <Router>
                 <Route path="/">
                 <FileInput/>
                     </Route>
-            
                 <Route exact path = '/reader'>
                 <Reader>
-                       
-                </Reader> 
+                </Reader>
                 </Route>
             </Router>
         </Provider>

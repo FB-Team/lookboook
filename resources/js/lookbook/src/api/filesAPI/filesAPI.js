@@ -1,7 +1,8 @@
 import * as axios from 'axios'
+
 const filesAxios = axios.create({
-    baseURL: 'http://lookbook/api/filesApi/book',
-    port: 8000
+    baseURL: 'http://lookboook/api/filesApi/book',
+    port: 80
 })
 export const filesAPI = {
     async getLibs() {
